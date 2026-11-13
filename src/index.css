@@ -2,118 +2,82 @@
 
 @layer base {
   :root {
-    --bg-main: #F5F5F3;
-    --bg-surface: #ffffff;
-    --bg-surface-elevated: #eef2f7;
-    --border-color: #e5e7eb;
-    --border-hover: rgba(37, 99, 235, 0.4);
-    --primary: #2563eb;
-    --accent: #7c3aed;
-    --accent-orange: #f97316;
-    --highlight: #0891b2;
-    --success: #22c55e;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
+    --bg-main: #EDEDEE;
+    --bg-surface: #FFFFFF;
+    --bg-surface-elevated: #F5F6F8;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(255, 122, 0, 0.4);
+    --primary: #FF7A00;
+    --accent: #FF7A00;
+    --accent-gold: #FF7A00;
+    --accent-gold-light: #FF9500;
+    --accent-gold-dark: #E06700;
+    --text-main: #0E1015;
+    --text-muted: #5B606D;
     --card-bg: rgba(255, 255, 255, 0.85);
-    --glass-bg: rgba(255, 255, 255, 0.82);
-    --glass-border: rgba(229, 231, 235, 0.8);
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-serif: 'Instrument Serif', serif;
+    --glass-bg: rgba(237, 237, 238, 0.85);
+    --glass-border: rgba(0, 0, 0, 0.08);
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-display: 'Plus Jakarta Sans', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
   }
 
-  html.light {
-    --bg-main: #F5F5F3;
-    --bg-surface: #ffffff;
-    --bg-surface-elevated: #eef2f7;
-    --border-color: #e5e7eb;
-    --border-hover: rgba(37, 99, 235, 0.4);
-    --primary: #2563eb;
-    --accent: #7c3aed;
-    --accent-orange: #f97316;
-    --highlight: #0891b2;
-    --success: #22c55e;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --glass-bg: rgba(255, 255, 255, 0.82);
-    --glass-border: rgba(229, 231, 235, 0.8);
+  body, button, input, select, textarea {
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
+}
 
-  html.dark {
-    --bg-main: #0b0f17;
-    --bg-surface: #111827;
-    --bg-surface-elevated: #1f2937;
-    --border-color: rgba(255, 255, 255, 0.1);
-    --border-hover: rgba(59, 130, 246, 0.5);
-    --primary: #3b82f6;
-    --accent: #8b5cf6;
-    --accent-orange: #f97316;
-    --highlight: #06b6d4;
-    --success: #22c55e;
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --card-bg: rgba(17, 24, 39, 0.75);
-    --glass-bg: rgba(11, 15, 23, 0.82);
-    --glass-border: rgba(255, 255, 255, 0.1);
-  }
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .font-heading {
-  font-family: var(--font-heading);
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .font-body {
-  font-family: var(--font-body);
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.font-serif {
-  font-family: var(--font-serif);
+.font-sans {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-mono {
+  font-family: 'Plus Jakarta Sans', monospace;
+}
+
+/* Editorial selection */
+::selection {
+  background-color: #FF7A00;
+  color: #FFFFFF;
 }
 
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-12px) rotate(1deg); }
+  50% { transform: translateY(-10px) rotate(0.5deg); }
 }
 
 @keyframes float-medium {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-18px) rotate(-1.5deg); }
-}
-
-@keyframes float-fast {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+  50% { transform: translateY(-14px); }
 }
 
-@keyframes breathing-scale {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.025); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.7; transform: scale(1.08); }
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.04); }
 }
 
 .animate-float-slow {
-  animation: float-slow 6s ease-in-out infinite;
+  animation: float-slow 7s ease-in-out infinite;
 }
 
 .animate-float-medium {
   animation: float-medium 5s ease-in-out infinite;
 }
 
-.animate-float-fast {
-  animation: float-fast 4s ease-in-out infinite;
-}
-
-.animate-breathing {
-  animation: breathing-scale 7s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 5s ease-in-out infinite;
+.animate-pulse-subtle {
+  animation: pulse-subtle 6s ease-in-out infinite;
 }
 
 @layer utilities {
@@ -123,11 +87,11 @@
   }
 
   .animate-marquee {
-    animation: marquee 30s linear infinite;
+    animation: marquee 35s linear infinite;
   }
 
-  .animate-marquee-fast {
-    animation: marquee 20s linear infinite;
+  .animate-marquee:hover {
+    animation-play-state: paused;
   }
 
   /* Custom scrollbar */
@@ -147,15 +111,6 @@
     border: 1px solid var(--border-color);
   }
 
-  .glass-card-hover {
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .glass-card-hover:hover {
-    border-color: var(--border-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(37, 99, 235, 0.12);
-  }
-
   .glass-nav {
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
@@ -166,14 +121,15 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light dark;
+  background-color: #0C0E13;
+  color: #F5F5F5;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--bg-main);
-  color: var(--text-main);
+  background-color: #0C0E13;
+  color: #F5F5F5;
   font-family: var(--font-body);
   overflow-x: hidden;
 }

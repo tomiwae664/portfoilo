@@ -1,645 +1,740 @@
-import { Project, ServiceItem, ProcessStep, SkillCategory, Testimonial, FAQItem, Article, EstimatorOption, AwardItem } from '../types';
+import { Project, ServiceItem, ProcessStep, Testimonial, FAQItem, Article, EstimatorOption, AwardItem, KeyFactItem, TeamMemberItem } from '../types';
 
 export const PERSONAL_INFO = {
-  name: "Alexander Vance",
-  title: "Website Developer & UI/UX Designer",
-  experienceYears: "6+",
-  completedProjects: "85+",
+  name: "Emmanuel",
+  title: "Website Designer & Developer | AI Integrations",
+  experienceYears: "4+",
+  completedProjects: "50+",
   clientSatisfaction: "100%",
-  globalClients: "20+ Countries",
-  email: "alexander@vancedesign.co",
-  phone: "+1 (800) 482-VANCE",
-  location: "New York, NY / Remote Worldwide",
+  globalClients: "20+",
+  email: "emmanuel@developer.design",
+  phone: "+1 (800) EMMANUEL",
+  location: "Remote Worldwide",
   calendlyUrl: "https://calendly.com",
-  whatsappUrl: "https://wa.me/18004828262",
-  github: "https://github.com",
+  whatsappUrl: "https://wa.me/18000000000",
+  behance: "https://behance.net",
+  dribbble: "https://dribbble.com",
   linkedin: "https://linkedin.com",
   twitter: "https://twitter.com",
-  dribbble: "https://dribbble.com",
-  bio: "I'm Alexander Vance, a senior Website Developer and UI/UX Designer with over 6 years of hands-on experience crafting bespoke digital products, WordPress platforms, and high-converting marketing sites for SaaS startups, e-commerce leaders, and luxury brands worldwide."
+  upwork: "https://upwork.com",
+  instagram: "https://instagram.com",
+  github: "https://github.com",
+  portraitImage: "https://res.cloudinary.com/gz77x9kx/image/upload/v1791813329/Confident_Modern_Profile_Portrait-2_1_evuqef.png",
+  bio: "I’m a professional website designer and developer focused on creating modern, responsive, and high-performing websites that help businesses build a stronger online presence. I work with platforms such as WordPress, Shopify, Wix, Squarespace, Webflow, and Elementor to create websites that are visually appealing, easy to navigate, and built around the client’s goals. I also integrate AI-powered features into websites to make them smarter and more efficient."
 };
 
 export const PROJECTS: Project[] = [
   {
-    id: "aetheria-luxury",
-    title: "Aetheria Spatial Real Estate",
-    client: "Aetheria Group",
+    id: "bright-future-academy",
+    title: "Bright Future Academy",
+    client: "Bright Future Education",
     category: "Website Design",
-    categoryLabel: "3D & LUXURY UX",
+    categoryLabel: "School Website / UI/UX / WordPress",
     year: "2025",
-    subtitle: "A immersive digital estate showcase featuring 3D virtual floorplans, interactive lighting, and high-converting lead flows.",
-    description: "Aetheria requested a ultra-luxury digital experience for architectural developments across London, New York, and Zurich. Built with Next.js 15, Three.js, and custom GSAP transitions.",
-    challenge: "Traditional real estate portals feel static and slow. Aetheria needed sub-second loading while rendering interactive 3D floorplans and multi-currency inquiry tools.",
-    solution: "Engineered a headless architecture pairing Next.js with WebGL shader optimization, achieving a 99 Lighthouse performance score and 240% increase in qualified buyer inquiries.",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    subtitle: "A modern school website designed to communicate academic programs, admissions process, campus life, and community.",
+    description: "A modern school website designed to communicate the school's academic programs, admissions process, campus experience, and community in a clear and engaging digital experience. Built with custom WordPress theme architecture, Elementor Pro layouts, and accessible multi-tier navigation.",
+    challenge: "The previous school portal was dated, difficult to navigate for prospective parents on mobile devices, and lacked an intuitive digital enrollment request funnel.",
+    solution: "Designed a clean, warm, and highly structured interface in Figma with clear parent and student pathways, virtual campus tour highlights, interactive program curriculum guides, and automated admissions inquiry forms.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878748/c8900f254257965.6a7e4aff2a3e8_gy8lzk.webp",
     galleryImages: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80"
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/eca394254257965.6a7e4804db191_pynuc5.webp",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878748/e8e2c5254257965.6a7e4806d0456_aw2yfv.webp",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878748/8bfbb7254257965.6a7e480537932_d0uaao.webp"
     ],
-    tags: ["Next.js 15", "Three.js", "Figma UI/UX", "Tailwind CSS", "GSAP"],
+    tags: ["WordPress", "UI/UX Design", "Figma", "Elementor", "Responsive", "SEO"],
     impactMetrics: [
-      { label: "Inquiry Conversion", value: "+240%" },
-      { label: "Lighthouse Speed", value: "99/100" },
-      { label: "Avg Session Time", value: "4m 12s" }
+      { label: "Admissions Inquiries", value: "+180%" },
+      { label: "Mobile Bounce Rate", value: "-45%" },
+      { label: "Lighthouse Speed", value: "98/100" }
     ],
-    liveUrl: "https://aetheria-estates.example.com",
+    liveUrl: "https://brightfuture.example.com",
     featured: true,
-    award: "Awwwards Site of the Day Nominee",
+    award: "Best Educational Web Design 2025",
     testimonial: {
-      quote: "Alexander transformed our property vision into a masterpiece. The 3D interactive floorplans drove our highest pre-sales month in company history.",
-      author: "Marcus Rothschild",
-      role: "Managing Director",
-      company: "Aetheria Group",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+      quote: "Emmanuel transformed our entire school's digital presence. Parents constantly compliment the effortless admissions process and the beautiful design.",
+      author: "Dr. Eleanor Sterling",
+      role: "Head of Admissions",
+      company: "Bright Future Academy",
+      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
     }
   },
   {
-    id: "vanguard-fintech",
-    title: "Vanguard Wealth Portal",
-    client: "Vanguard Global",
+    id: "shipping-logistics-portal",
+    title: "Shipping & Logistics Website",
+    client: "Apex Global Freight",
     category: "WordPress Development",
-    categoryLabel: "CUSTOM WORDPRESS & REACT",
+    categoryLabel: "Logistics / WordPress / UI Design",
     year: "2024",
-    subtitle: "Custom WordPress portal integrated with React financial dashboard widgets, client document vault, and AES-256 security.",
-    description: "Built a bespoke WordPress theme with custom Gutenberg blocks, Elementor extensions, and secure API gateways for wealth management clients.",
-    challenge: "Legacy financial sites were clunky and difficult for non-technical editors to manage without breaking complex layout grids.",
-    solution: "Designed a modular UI component library in Figma, coded custom Gutenberg blocks in PHP and React, providing zero-code editing flexibility with extreme security.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+    subtitle: "A professional logistics website designed to communicate shipping services, build trust, and drive quote requests.",
+    description: "A professional logistics website designed to communicate shipping services, build trust, and make it easy for customers to request information and take action. Features interactive route freight calculators, instant shipment quote requests, and multi-hub tracking integrations.",
+    challenge: "Industrial logistics websites often suffer from confusing technical jargon, cluttered tables, and slow mobile loading speeds that lose high-value corporate quote leads.",
+    solution: "Crafted an authoritative, dark-slate editorial UI with custom icon vectors, interactive quote estimator forms, instant tracking widgets, and clean service tier breakdowns.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/ddb9bc9bdffdb04ca3995c729a45afb7_v9czir.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80"
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/ce55fbdf919fd214568629dd2ed45168_xzbcow.jpg",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/a5764a7208c5eb5a88d43d6d5d3d267a_ccxxzq.jpg",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/ce55fbdf919fd214568629dd2ed45168_xzbcow.jpg"
     ],
-    tags: ["WordPress", "PHP", "Elementor", "React", "REST API", "Tailwind"],
+    tags: ["WordPress", "UI Design", "Freight Quote System", "PHP", "Speed Optimization"],
     impactMetrics: [
-      { label: "Processed Capital", value: "$12M+" },
-      { label: "Editor Content Time", value: "-70%" },
-      { label: "Page Load Speed", value: "0.8s" }
+      { label: "Freight Quote Requests", value: "+230%" },
+      { label: "Corporate Clients Closed", value: "35+" },
+      { label: "Avg Page Load", value: "0.7s" }
     ],
-    liveUrl: "https://vanguard-wealth.example.com",
+    liveUrl: "https://apexlogistics.example.com",
     featured: true,
-    award: "CSS Design Awards Special Kudos",
+    award: "Logistics Digital Excellence 2024",
     testimonial: {
-      quote: "Alexander's WordPress engineering gave our team total content freedom while maintaining enterprise-grade bank security and stunning aesthetics.",
-      author: "Elena Rostova",
-      role: "VP of Digital",
-      company: "Vanguard Global",
-      avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80"
-    }
-  },
-  {
-    id: "kroma-horlogerie",
-    title: "KROMA Luxury Horlogerie",
-    client: "KROMA Geneva",
-    category: "WooCommerce",
-    categoryLabel: "LUXURY E-COMMERCE",
-    year: "2024",
-    subtitle: "Headless WooCommerce storefront featuring 360-degree watch customization, instant checkout, and multi-currency localization.",
-    description: "A luxury timepiece e-commerce experience designed for high-net-worth collectors with instant filtering, sapphire glass shaders, and bespoke WooCommerce checkout.",
-    challenge: "Standard WooCommerce templates felt generic and failed to evoke Swiss luxury craft expectations.",
-    solution: "Crafted a bespoke dark luxury UI in Figma, coupled with custom WooCommerce PHP hooks, Stripe Elements, and sub-second page transitions.",
-    image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80",
-    galleryImages: [
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1200&q=80"
-    ],
-    tags: ["WooCommerce", "WordPress", "JavaScript", "Stripe API", "Figma UI/UX"],
-    impactMetrics: [
-      { label: "Conversion Lift", value: "+310%" },
-      { label: "Average Order Value", value: "$3,450" },
-      { label: "Mobile Bounce Rate", value: "18%" }
-    ],
-    liveUrl: "https://kroma-watches.example.com",
-    featured: true,
-    award: "E-Commerce Excellence Award 2024",
-    testimonial: {
-      quote: "Alexander's vision for KROMA elevated our online storefront to match our Geneva boutique experience. Conversion tripled in the first 60 days.",
-      author: "Jean-Luc Vance",
-      role: "Founder & Creative Director",
-      company: "KROMA Geneva",
+      quote: "Emmanuel understood our industrial requirements right away. Our commercial shipping quote inquiries doubled within 30 days of launch.",
+      author: "Marcus Vance",
+      role: "Operations Director",
+      company: "Apex Global Freight",
       avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
     }
   },
   {
-    id: "lumina-ai-saas",
-    title: "Lumina AI SaaS Platform",
-    client: "Lumina Labs",
-    category: "UI/UX Design",
-    categoryLabel: "SAAS & LANDING PAGES",
-    year: "2025",
-    subtitle: "High-converting marketing site and web application UI for an AI-powered creative synthesis suite.",
-    description: "Complete design system, interactive pricing calculator, and SaaS dashboard designed from scratch in Figma and deployed on Next.js 15.",
-    challenge: "Explaining complex AI workflow tools to non-technical creative directors in a visually compelling, simple way.",
-    solution: "Designed interactive product video previews, micro-animated feature cards, and a streamlined 2-step onboarding funnel.",
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    id: "law-firm-practice",
+    title: "Law Firm Website",
+    client: "Vance & Sterling Attorneys",
+    category: "WordPress Development",
+    categoryLabel: "Professional Services / UI/UX / WordPress",
+    year: "2024",
+    subtitle: "A sophisticated law firm website focused on credibility, clear practice presentation, and client conversion.",
+    description: "A sophisticated law firm website focused on credibility, clear service presentation, intuitive navigation, and professional client conversion. Built with bespoke attorney bios, case verdict archives, and secure consultation request funnels.",
+    challenge: "The firm needed to convey prestige, authority, and discretion without feeling intimidating, while making practice area consultations easy to schedule.",
+    solution: "Designed an editorial layout with rich champagne gold typography, high-contrast practice cards, automated consultation calendar synchronization, and full WCAG accessibility compliance.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878748/2c3327243558385.6a158a540ad58_cnmjyc.webp",
     galleryImages: [
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878749/c2ff4e243558385.6a5e51a63cf6b_qxpjdm.webp",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788878754/d06cc4243558385.6a5e51a63c308_fb7hbh.webp"
     ],
-    tags: ["Figma", "UI/UX", "Next.js", "Tailwind CSS", "Framer Motion"],
+    tags: ["WordPress", "UI/UX", "Law Practice", "SEO", "Consultation Funnel"],
     impactMetrics: [
-      { label: "Month 1 Signups", value: "45,000+" },
-      { label: "Funnel Conversion", value: "12.8%" },
-      { label: "User Satisfaction", value: "4.9/5" }
+      { label: "Consultation Bookings", value: "+195%" },
+      { label: "SEO Ranking for Practice", value: "Top 3" },
+      { label: "Client Retainers", value: "$1.4M+" }
     ],
-    liveUrl: "https://lumina-ai.example.com",
+    liveUrl: "https://vancesterlinglaw.example.com",
     featured: true,
+    award: "Professional Services Design of the Year",
     testimonial: {
-      quote: "Alexander is a rare dual-threat designer and developer. The UI designs were world-class and the frontend code was impeccably structured.",
-      author: "Dr. Aris Thorne",
-      role: "CEO",
-      company: "Lumina Labs",
+      quote: "Emmanuel created a website that matches our firm's reputation for high-stakes litigation. The consultation intake process runs like clockwork.",
+      author: "Julian Sterling, Esq.",
+      role: "Senior Partner",
+      company: "Vance & Sterling Law",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
     }
   },
   {
-    id: "hyperion-creative",
-    title: "Hyperion Motion Studio",
-    client: "Hyperion Agency",
+    id: "modern-business-portal",
+    title: "Business Website",
+    client: "Nexus Enterprise Capital",
     category: "WordPress Development",
-    categoryLabel: "WORDPRESS & ELEMENTOR REDESIGN",
-    year: "2024",
-    subtitle: "Complete WordPress redesign with Elementor Pro custom widgets, GSAP scroll triggers, and video portfolio showcases.",
-    description: "Transformed an outdated slow agency site into an ultra-fast, cinematic portfolio featuring smooth page transitions and custom case study layouts.",
-    challenge: "The previous WordPress build scored 24/100 on mobile speed and took 6 seconds to load video assets.",
-    solution: "Optimized server caching, compressed media pipelines, wrote lightweight custom Elementor modules, boosting Lighthouse mobile performance to 98.",
-    image: "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&w=1200&q=80",
+    categoryLabel: "Business Website / WordPress / Development",
+    year: "2025",
+    subtitle: "A modern business website combining clean interface design, responsive development, and functional features.",
+    description: "A modern business website combining clean interface design, responsive development, and functional features to create a professional online presence. Features custom post types, dynamic client portals, and sub-second page performance.",
+    challenge: "Nexus required a versatile digital foundation that non-technical team members could update weekly with new case studies and press announcements without breaking brand guidelines.",
+    solution: "Engineered a custom Gutenberg block system with strict brand tokens, seamless Elementor compatibility, and instant cache invalidation via Cloudflare CDN.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788880603/e68c42c5a2de16c8388891247d98e103_ebkulk.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80"
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788880603/6e24a09cc80e65de0e00bb586ae644a8_u23vra.jpg",
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788880603/ef6a6fe7e522f28e6b2fb5874d849483_ynaurx.jpg"
     ],
-    tags: ["WordPress", "Elementor Pro", "GSAP", "PHP", "Speed Optimization"],
+    tags: ["WordPress", "Gutenberg Blocks", "ACF Pro", "PHP 8.2", "Tailwind"],
     impactMetrics: [
-      { label: "Mobile Speed Score", value: "98/100" },
-      { label: "Organic Traffic", value: "+180%" },
-      { label: "Client Inquiries", value: "3x" }
+      { label: "Content Publishing Speed", value: "3x Faster" },
+      { label: "Organic Visitors", value: "+140%" },
+      { label: "Mobile Usability Score", value: "100%" }
     ],
-    liveUrl: "https://hyperion-motion.example.com",
+    liveUrl: "https://nexusenterprise.example.com",
+    featured: true,
+    testimonial: {
+      quote: "Working with Emmanuel was seamless. He delivered our business site ahead of schedule with zero bugs, and our team loves managing the content.",
+      author: "Samantha Hayes",
+      role: "Chief Operating Officer",
+      company: "Nexus Capital",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
+    }
+  },
+  {
+    id: "luxury-fashion-store",
+    title: "Maison de Luxe Fashion Store",
+    client: "Maison Haute Couture",
+    category: "WooCommerce",
+    categoryLabel: "WooCommerce / E-Commerce / UI/UX",
+    year: "2024",
+    subtitle: "A high-conversion online fashion store with custom product filtering, one-click checkout, and instant mobile load speeds.",
+    description: "An editorial e-commerce platform engineered with WooCommerce, bespoke PHP product templates, Stripe Elements payment processing, and interactive size guide modals.",
+    challenge: "High cart abandonment on mobile viewports due to slow image rendering and clunky multi-step checkout processes.",
+    solution: "Redesigned the store with a mobile-first editorial lookbook, 1-step slideout cart, AJAX variant selectors, and optimized CDN image serving.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788884685/750c3316dda22645d48dd1283942d35e_i5puvc.jpg",
+    galleryImages: [
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788884685/893866e81e290e86bfa2ff2abda0a820_ert2nf.jpg"
+    ],
+    tags: ["WooCommerce", "WordPress", "Stripe API", "AJAX Filters", "Figma"],
+    impactMetrics: [
+      { label: "Conversion Lift", value: "+280%" },
+      { label: "Average Order Value", value: "$240" },
+      { label: "Cart Abandonment", value: "-38%" }
+    ],
+    liveUrl: "https://maisonluxe.example.com",
     featured: false
   },
   {
-    id: "solis-wellness",
-    title: "Solis Mobile Health Landing",
-    client: "Solis Health",
+    id: "saas-landing-experience",
+    title: "SaaS Landing Experience",
+    client: "Aetheria Cloud",
     category: "Landing Pages",
-    categoryLabel: "CONVERSION LANDING PAGE",
-    year: "2024",
-    subtitle: "High-converting landing page for a personalized longevity & biohacking wearable app.",
-    description: "Crafted interactive comparison sliders, habit trackers, and customer testimonial video embeds with clear conversion architecture.",
-    challenge: "Solis needed to convert paid ad traffic into active app pre-orders at a target CPA under $25.",
-    solution: "A tight, focused single-page landing structure with sticky booking CTA, social proof badges, and sub-1s load speed.",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+    categoryLabel: "Landing Pages / Figma to WordPress",
+    year: "2025",
+    subtitle: "An interactive B2B SaaS landing page designed in Figma and coded into WordPress with 100/100 Core Web Vitals.",
+    description: "A conversion-focused landing page featuring interactive feature tabs, dynamic pricing tier switchers, animated ROI calculators, and seamless CRM lead capture.",
+    challenge: "Explaining enterprise cloud infrastructure to decision-makers in under 30 seconds of browsing time.",
+    solution: "Crafted visual storytelling diagrams, sticky CTA navigation, video demo modals, and streamlined 2-step demo request forms.",
+    image: "https://res.cloudinary.com/gz77x9kx/image/upload/v1788898689/fb8afcc3a1c0e73a01aaf9e951d01a70_gfgewq.jpg",
     galleryImages: [
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80"
+      "https://res.cloudinary.com/gz77x9kx/image/upload/v1788898723/50fe06015ba579dcb13a662f5b5197ab_uaipkm.jpg"
     ],
-    tags: ["React", "Landing Page", "UI/UX Design", "Tailwind CSS", "A/B Testing"],
+    tags: ["Figma to WordPress", "Landing Page", "Conversion UX", "GSAP", "Tailwind"],
     impactMetrics: [
-      { label: "Pre-Order Conversion", value: "14.2%" },
-      { label: "Customer Acquisition Cost", value: "-40%" },
-      { label: "Total Downloads", value: "100k+" }
+      { label: "Demo Signups", value: "+310%" },
+      { label: "CPA Reduction", value: "-42%" },
+      { label: "Lighthouse Performance", value: "100/100" }
     ],
-    liveUrl: "https://solis-health.example.com",
+    liveUrl: "https://aetheriacloud.example.com",
     featured: false
   }
 ];
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: "website-design",
-    title: "Website Design",
-    tagline: "Bespoke digital design crafted for prestige and high conversion.",
-    description: "I design clean, editorial, and interactive web layouts tailored specifically to your brand identity, target audience, and business goals. Designed in Figma with full design token libraries.",
-    iconName: "Layout",
-    deliverables: ["Figma Design Systems", "Responsive Mobile & Desktop Wireframes", "Interactive Prototypes", "Design Token Handoff"],
-    technologies: ["Figma", "Adobe CC", "Tokens Studio", "Plugins"],
-    typicalTimeline: "2 - 3 Weeks",
-    startingPrice: "$1,800",
-    features: ["Custom typography scale", "Micro-interaction specs", "Component auto-layout", "WCAG accessibility colors"]
-  },
-  {
-    id: "wordpress-development",
-    title: "WordPress Development",
-    tagline: "Custom, scalable WordPress themes & Elementor builds.",
-    description: "No bloated off-the-shelf themes. I engineer custom PHP WordPress themes, Gutenberg blocks, and Elementor setups engineered for maximum speed, security, and effortless client editing.",
+    id: "wordpress-elementor",
+    title: "WordPress & Elementor",
+    tagline: "Custom, responsive WordPress websites & high-converting Elementor builds.",
+    description: "Clean, modern WordPress site builds with Elementor or custom blocks, responsive mobile design, fast loading speeds, and intuitive backend setup for easy updates.",
     iconName: "Code2",
-    deliverables: ["Custom WordPress Theme", "Elementor Pro Integration", "Custom PHP/ACF Fields", "Security & Backup Setup"],
-    technologies: ["WordPress", "PHP 8.2", "Elementor", "ACF Pro", "MySQL"],
-    typicalTimeline: "3 - 5 Weeks",
-    startingPrice: "$2,200",
-    features: ["Zero-bloat code", "ACF Flexible Content", "Sub-1s page load speed", "Automated daily backups"]
-  },
-  {
-    id: "ui-ux-design",
-    title: "UI/UX Design",
-    tagline: "User-centered research, wireframing & digital product interfaces.",
-    description: "Deep dive into user psychology, competitor benchmarking, and friction-free user flows to create seamless interfaces for SaaS dashboards, web apps, and mobile platforms.",
-    iconName: "Palette",
-    deliverables: ["User Journey Maps", "Information Architecture", "High-Fidelity UI Screens", "Usability Testing Report"],
-    technologies: ["Figma", "Miro", "Useberry", "FigJam"],
-    typicalTimeline: "2 - 4 Weeks",
-    startingPrice: "$2,500",
-    features: ["Comprehensive UX audits", "Clickable wireframes", "Design system documentation", "Developer-ready specs"]
-  },
-  {
-    id: "landing-pages",
-    title: "Landing Pages",
-    tagline: "High-converting single-page layouts engineered to scale ad ROI.",
-    description: "Focused, persuasive landing pages built to turn cold traffic into leads, consultations, and sales. Optimized for mobile viewports and instant loading speeds.",
-    iconName: "Zap",
-    deliverables: ["Persuasive Copy Structure", "Custom Responsive Page", "Form & CRM Integrations", "A/B Test Setup"],
-    technologies: ["React / Next.js", "WordPress / Elementor", "Tailwind CSS", "Unbounce"],
+    deliverables: ["Custom WordPress Theme / Elementor", "Mobile Responsive Architecture", "Custom Post Types & Layouts", "Speed & Security Hardening"],
+    technologies: ["WordPress", "Elementor Pro", "PHP", "Responsive Design", "MySQL"],
     typicalTimeline: "1 - 2 Weeks",
-    startingPrice: "$1,200",
-    features: ["Sticky conversion CTAs", "Fast mobile viewports", "Social proof placement", "Analytics tracking integration"]
+    startingPrice: "$500",
+    basePriceUSD: 500,
+    features: ["Mobile-first responsive layouts", "Intuitive drag-and-drop editor", "Fast page load times", "Clean semantic structure"]
   },
   {
-    id: "website-redesign",
-    title: "Website Redesign",
-    tagline: "Revamp outdated websites with modern design & 100/100 performance.",
-    description: "Transform your dated website into a modern, high-performing lead engine without losing hard-earned SEO rankings or organic traffic history.",
-    iconName: "RefreshCw",
-    deliverables: ["SEO Audit & Redirect Mapping", "Brand Refinement", "Modern UI Overhaul", "Full Migration"],
-    technologies: ["WordPress", "Next.js", "Gutenberg", "Elementor Pro"],
-    typicalTimeline: "3 - 4 Weeks",
-    startingPrice: "$2,400",
-    features: ["Zero SEO loss guarantee", "301 redirect mapping", "Speed upgrade guarantee", "Modern visual storytelling"]
-  },
-  {
-    id: "woocommerce",
-    title: "WooCommerce E-Commerce",
-    tagline: "Custom online storefronts optimized for maximum average order value.",
-    description: "Build or upgrade your online store with WooCommerce. Fast checkout flows, multi-currency support, custom product configurators, and inventory synchronization.",
+    id: "shopify-stores",
+    title: "Shopify E-Commerce",
+    tagline: "Modern, conversion-focused online stores built to scale sales.",
+    description: "Complete Shopify store setup and customization, product catalog configuration, secure payment gateways, cart flows, and mobile-optimized shopping experiences.",
     iconName: "ShoppingBag",
-    deliverables: ["WooCommerce Setup", "Custom Product Templates", "Stripe/PayPal Gateway", "Cart Abandonment Flow"],
-    technologies: ["WooCommerce", "WordPress", "Stripe API", "PHP", "JavaScript"],
-    typicalTimeline: "4 - 6 Weeks",
-    startingPrice: "$3,200",
-    features: ["One-click checkout", "Bespoke product filters", "Inventory sync", "Sub-1.5s page load times"]
+    deliverables: ["Full Shopify Store Setup", "Payment & Shipping Integration", "Custom Theme Styling", "Product Catalog Configuration"],
+    technologies: ["Shopify", "Liquid", "E-Commerce", "Payment Gateways"],
+    typicalTimeline: "1 - 3 Weeks",
+    startingPrice: "$750",
+    basePriceUSD: 750,
+    features: ["Frictionless checkout experience", "Mobile-optimized product pages", "Inventory & order tracking", "Conversion-focused design"]
   },
   {
-    id: "website-maintenance",
-    title: "Website Maintenance & Care",
-    tagline: "Ongoing security, performance monitoring, and content updates.",
-    description: "Keep your website secure, ultra-fast, and updated. I handle WordPress core updates, plugin audits, speed optimizations, uptime monitoring, and monthly content edits.",
-    iconName: "ShieldCheck",
-    deliverables: ["Weekly Security Audits", "Daily Cloud Backups", "Plugin & Theme Updates", "Dedicated Support Hours"],
-    technologies: ["Cloudflare", "iThemes Security", "WP Rocket", "UpdraftPlus"],
-    typicalTimeline: "Monthly Retainer",
-    startingPrice: "$250 / mo",
-    features: ["Uptime monitoring 24/7", "Malware scanning", "Priority bug fixes", "Monthly health reporting"]
-  },
-  {
-    id: "seo-speed-optimization",
-    title: "Speed & SEO Optimization",
-    tagline: "Achieve 95+ Lighthouse performance scores & higher Google rankings.",
-    description: "Diagnose and fix slow loading speeds, uncompressed assets, render-blocking scripts, and technical SEO bottlenecks to improve your organic rankings.",
-    iconName: "Gauge",
-    deliverables: ["Comprehensive Speed Audit", "Core Web Vitals Fixes", "Image WebP Optimization", "Schema Markup"],
-    technologies: ["Lighthouse", "WP Rocket", "Cloudflare CDN", "Yoast SEO", "RankMath"],
-    typicalTimeline: "1 Week",
-    startingPrice: "$850",
-    features: ["Core Web Vitals green", "Database cleanup", "Script deferral & minification", "RankMath/Yoast setup"]
-  },
-  {
-    id: "booking-systems",
-    title: "Booking & Consultation Systems",
-    tagline: "Automated client scheduling, deposit payments, and calendar sync.",
-    description: "Integrate seamless booking tools into your website so clients can schedule consultations, pick appointment slots, and pay deposits automatically 24/7.",
-    iconName: "Calendar",
-    deliverables: ["Calendly / Acuity Integration", "Custom Booking Forms", "Stripe Deposit Gateway", "SMS & Email Reminders"],
-    technologies: ["Calendly API", "Acuity", "Zapier", "Stripe", "WordPress"],
+    id: "webflow-development",
+    title: "Webflow Development",
+    tagline: "Dynamic, visually stunning, and ultra-clean Webflow websites.",
+    description: "Modern visual development in Webflow with fluid interactions, responsive breakpoints, clean CMS collections, and high-performance hosting setup.",
+    iconName: "Zap",
+    deliverables: ["Custom Webflow Build", "CMS Collection Architecture", "Interactive Micro-Animations", "SEO & Domain Launch"],
+    technologies: ["Webflow", "Webflow CMS", "HTML/CSS", "Interactions"],
     typicalTimeline: "1 - 2 Weeks",
-    startingPrice: "$950",
-    features: ["Google/Outlook Calendar sync", "Automated email confirmations", "Deposit payment collection", "Time zone auto-detection"]
+    startingPrice: "$650",
+    basePriceUSD: 650,
+    features: ["Pixel-perfect visual fidelity", "Effortless client CMS editing", "Fast global CDN hosting", "Zero plugin dependency"]
+  },
+  {
+    id: "wix-squarespace",
+    title: "Wix & Squarespace Sites",
+    tagline: "Fast, polished, and cost-effective websites for businesses & creators.",
+    description: "Beautiful, user-friendly websites built on Wix and Squarespace, designed to build trust, showcase services, and capture leads without complex maintenance.",
+    iconName: "Layout",
+    deliverables: ["Custom Wix / Squarespace Setup", "Mobile Responsive Tuning", "Lead Capture Integration", "Client Handoff Guide"],
+    technologies: ["Wix", "Squarespace", "Responsive Design", "Form Builder"],
+    typicalTimeline: "4 - 7 Days",
+    startingPrice: "$500",
+    basePriceUSD: 500,
+    features: ["Budget-friendly turnarounds", "Zero technical maintenance needed", "Built-in analytics & booking", "Clean typography & layout"]
+  },
+  {
+    id: "ai-chatbots-assistants",
+    title: "AI Chatbots & Assistants",
+    tagline: "24/7 intelligent chat agents and virtual assistants trained on your business.",
+    description: "Smart conversational AI chatbots and virtual assistants that engage visitors, answer FAQs instantly, qualify leads, and guide users through your website.",
+    iconName: "Bot",
+    deliverables: ["Custom AI Chatbot Setup", "Business Knowledge Training", "Chat Widget Design & Integration", "Lead Notification Webhooks"],
+    technologies: ["AI Chatbots", "Virtual Assistants", "LLM APIs", "Webhooks"],
+    typicalTimeline: "3 - 5 Days",
+    startingPrice: "$500",
+    basePriceUSD: 500,
+    features: ["24/7 instant visitor response", "Accurate business knowledge base", "Lead qualification & capture", "Multi-platform embed ready"]
+  },
+  {
+    id: "automated-support-forms",
+    title: "Automated Support & AI Forms",
+    tagline: "Smart forms, dynamic conditional logic & automated customer support.",
+    description: "Replace static forms with intelligent, AI-powered multi-step forms that validate input, provide instant answers, and route customer inquiries automatically.",
+    iconName: "CheckCircle",
+    deliverables: ["AI-Powered Smart Forms", "Automated Support Flows", "Instant Email / CRM Routing", "User Guidance Automation"],
+    technologies: ["AI Forms", "Automated Support", "CRM Connectors", "Validation"],
+    typicalTimeline: "3 - 5 Days",
+    startingPrice: "$500",
+    basePriceUSD: 500,
+    features: ["Dynamic conditional questioning", "Automated instant customer responses", "Clean lead data routing", "Higher submission completion rates"]
+  },
+  {
+    id: "workflow-automation",
+    title: "Workflow Automation",
+    tagline: "Connect your website to apps, CRMs, and email tools to save hours weekly.",
+    description: "End-to-end business workflow automation connecting your website with your CRM, Google Workspace, email marketing, billing, and notification tools.",
+    iconName: "RefreshCw",
+    deliverables: ["Workflow Map & Architecture", "Webhook & API Connections", "Automated Notifications & Sync", "End-to-End Testing"],
+    technologies: ["Workflow Automation", "Zapier / Make", "Webhooks", "CRM Sync"],
+    typicalTimeline: "4 - 7 Days",
+    startingPrice: "$550",
+    basePriceUSD: 550,
+    features: ["Zero manual data entry", "Real-time client notifications", "Error handling & logging", "Scalable cloud automations"]
+  },
+  {
+    id: "personalized-ai-content",
+    title: "Personalized UX & AI Tools",
+    tagline: "Smart visitor personalization and embedded AI content tools.",
+    description: "Tailor content dynamically based on visitor persona or source, and integrate smart AI content tools to assist users, generate custom recommendations, or streamline content creation.",
+    iconName: "Sparkles",
+    deliverables: ["Dynamic Personalization Logic", "AI Content Tool Embeds", "Recommendation Engine", "Analytics & A/B Tracking"],
+    technologies: ["Personalized UX", "AI Content Tools", "JavaScript", "Analytics"],
+    typicalTimeline: "5 - 8 Days",
+    startingPrice: "$600",
+    basePriceUSD: 600,
+    features: ["Context-aware user journeys", "Automated content assistance", "Increased visitor engagement", "Smart recommendations"]
   }
 ];
 
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: "01",
-    title: "Discovery & Strategy",
-    description: "We align on your business goals, target audience, brand position, and project deliverables.",
-    details: ["Kickoff meeting & brief review", "Competitor & market analysis", "Scope definition & milestone timeline"],
-    duration: "Week 1"
+    title: "DISCOVER",
+    description: "Understand the business, audience, goals, and project requirements.",
+    details: [
+      "In-depth client discovery consultation",
+      "Competitor and target audience research",
+      "Scope definition, milestones & deliverable timeline"
+    ],
+    duration: "Phase 1"
   },
   {
     number: "02",
-    title: "UX Research & Wireframing",
-    description: "Mapping out the information architecture and creating low-fidelity wireframes for user flow approval.",
-    details: ["User journey mapping", "Information architecture", "Clickable low-fidelity wireframes"],
-    duration: "Week 1 - 2"
+    title: "DESIGN",
+    description: "Create the visual direction, user experience, wireframes, and interface.",
+    details: [
+      "Information architecture and wireframe mapping",
+      "High-fidelity visual design in Figma",
+      "Interactive desktop and mobile prototype review"
+    ],
+    duration: "Phase 2"
   },
   {
     number: "03",
-    title: "UI Design & Prototyping",
-    description: "Crafting modern, pixel-perfect visual designs in Figma with typography, colors, and interactive prototypes.",
-    details: ["High-fidelity Figma mockups", "Custom design tokens & UI elements", "Interactive desktop & mobile prototype"],
-    duration: "Week 2 - 3"
+    title: "BUILD",
+    description: "Develop the website with responsive layouts, functionality, and clean implementation.",
+    details: [
+      "Clean WordPress & Elementor development",
+      "Custom PHP post types and dynamic fields",
+      "Responsive cross-device testing & animations"
+    ],
+    duration: "Phase 3"
   },
   {
     number: "04",
-    title: "Development & Coding",
-    description: "Translating approved designs into clean, responsive, ultra-fast code on WordPress or React/Next.js.",
-    details: ["Custom WordPress / Next.js code", "Tailwind CSS & smooth animations", "Mobile responsive optimization"],
-    duration: "Week 3 - 5"
-  },
-  {
-    number: "05",
-    title: "Testing & Speed QA",
-    description: "Rigorous quality assurance testing across modern browsers, devices, Core Web Vitals, and security.",
-    details: ["Lighthouse speed optimization (95+)", "Cross-browser & mobile QA testing", "Form & integration validation"],
-    duration: "Week 5"
-  },
-  {
-    number: "06",
-    title: "Launch & Growth Support",
-    description: "Deploying your website live, setting up analytics, and providing 30 days of post-launch warranty support.",
-    details: ["Domain & SSL deployment", "Google Search Console & Analytics setup", "Video walkthrough & 30-day warranty"],
-    duration: "Launch Day +"
+    title: "LAUNCH",
+    description: "Test, optimize, refine, and prepare the website for launch.",
+    details: [
+      "Core Web Vitals and speed optimization (95+)",
+      "Technical on-page SEO and schema validation",
+      "Domain DNS handoff and client editor training"
+    ],
+    duration: "Phase 4"
   }
 ];
 
-export const SKILL_CATEGORIES: SkillCategory[] = [
-  {
-    category: "Core Web Technologies",
-    skills: [
-      { name: "WordPress & PHP", level: 98, icon: "Wordpress", highlight: true },
-      { name: "Elementor Pro", level: 96, icon: "LayoutGrid", highlight: true },
-      { name: "HTML5 & CSS3/Sass", level: 99, icon: "FileCode" },
-      { name: "JavaScript (ES6+)", level: 95, icon: "Code" },
-      { name: "PHP 8.2 & MySQL", level: 92, icon: "Database" }
-    ]
-  },
-  {
-    category: "Frontend & Modern Stack",
-    skills: [
-      { name: "React & Next.js 15", level: 94, icon: "Atom", highlight: true },
-      { name: "Tailwind CSS", level: 98, icon: "Palette", highlight: true },
-      { name: "GSAP & Framer Motion", level: 90, icon: "Sparkles" },
-      { name: "WooCommerce API", level: 94, icon: "ShoppingBag" },
-      { name: "Git & Vercel / Cloudflare", level: 92, icon: "GitBranch" }
-    ]
-  },
-  {
-    category: "Design & UX Tools",
-    skills: [
-      { name: "Figma & Design Systems", level: 98, icon: "Figma", highlight: true },
-      { name: "UI/UX & Wireframing", level: 96, icon: "PenTool" },
-      { name: "Mobile Responsive Layouts", level: 99, icon: "Smartphone" },
-      { name: "Speed & SEO Audit (95+)", level: 97, icon: "Gauge" }
-    ]
-  }
+export const STATS = [
+  { value: "50+", label: "Projects Delivered", description: "Successfully launched worldwide" },
+  { value: "4+", label: "Years Experience", description: "Specialized in WordPress & UI/UX" },
+  { value: "20+", label: "Happy Clients", description: "Agencies, startups & businesses" },
+  { value: "100%", label: "Responsive", description: "Pixel-perfect on all screen sizes" }
+];
+
+export const SKILLS = [
+  "WordPress",
+  "Shopify",
+  "Elementor",
+  "Webflow",
+  "Wix & Squarespace",
+  "AI Chatbots & Assistants",
+  "Automated Support & Forms",
+  "Workflow Automation",
+  "Responsive Web Design",
+  "UI/UX Design",
+  "HTML / CSS / JavaScript",
+  "Speed Optimization"
 ];
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    id: "test-1",
-    name: "Marcus Rothschild",
-    role: "Managing Director",
-    company: "Aetheria Real Estate",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-    content: "Alexander is without a doubt the most skilled web developer I have worked with in my 15-year career. He delivered our luxury real estate site on time, with a stunning 3D presentation that boosted our pre-sales by 240%.",
-    rating: 5,
-    projectType: "Website Design & 3D Interactive",
-    result: "+240% Pre-Sales Inquiries"
-  },
-  {
-    id: "test-2",
-    name: "Elena Rostova",
-    role: "VP of Digital Strategy",
-    company: "Vanguard Global Wealth",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
-    content: "Our custom WordPress portal built by Alexander gave our team total freedom to publish content while maintaining flawless financial security and sub-1s load times. Highly recommended!",
-    rating: 5,
-    projectType: "Custom WordPress Development",
-    result: "Sub-0.8s Page Load Speed"
-  },
-  {
-    id: "test-3",
-    name: "Jean-Luc Vance",
-    role: "Founder & Creative Director",
-    company: "KROMA Switzerland",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-    content: "Alexander transformed our WooCommerce store into a Swiss luxury flagship. His design eye for luxury typography paired with pixel-perfect coding tripled our conversion rates within two months.",
-    rating: 5,
-    projectType: "WooCommerce E-Commerce",
-    result: "+310% Conversion Rate"
-  },
-  {
-    id: "test-4",
-    name: "Sarah Lin",
-    role: "Head of Marketing",
-    company: "Solis Biohacking",
+    id: "t1",
+    quote: "Working with Emmanuel was a smooth experience. He understood the direction quickly and transformed the idea into a professional website.",
+    author: "Eleanor Sterling",
+    role: "Head of Admissions",
+    company: "Bright Future Academy",
+    projectType: "School Website / WordPress",
     avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
-    content: "Our landing page converted 14% of cold ad traffic into paid pre-orders! Alexander understands both conversion psychology and high-performance frontend code.",
-    rating: 5,
-    projectType: "Conversion Landing Page",
-    result: "14.2% Cold Ad Conversion"
+    rating: 5
+  },
+  {
+    id: "t2",
+    quote: "Emmanuel is responsive, creative, and technically skilled. He redesigned our logistics platform into an intuitive tool that drives real customer quote requests.",
+    author: "Marcus Vance",
+    role: "Operations Director",
+    company: "Apex Global Freight",
+    projectType: "Logistics / UI Design",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    rating: 5
+  },
+  {
+    id: "t3",
+    quote: "The attention to typography, spacing, and mobile speed exceeded our expectations. Our law firm has seen a massive increase in consultation inquiries.",
+    author: "Julian Sterling, Esq.",
+    role: "Senior Partner",
+    company: "Vance & Sterling Law",
+    projectType: "Professional Services / WordPress",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+    rating: 5
+  }
+];
+
+export const ARTICLES: Article[] = [
+  {
+    id: "wordpress-performance-2025",
+    title: "How 100ms Faster Page Speed Boosts Conversions by 22%",
+    category: "Performance",
+    readTime: "5 min read",
+    date: "Feb 10, 2025",
+    author: {
+      name: "Emmanuel",
+      role: "WordPress Developer",
+      avatar: "https://res.cloudinary.com/gz77x9kx/image/upload/v1786029226/emmanuel_dkwush.png"
+    },
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+    summary: "Why site speed is the ultimate conversion multiplier for modern businesses and how to optimize WordPress to score 95+ on Google Lighthouse.",
+    content: [
+      "Every millisecond matters in modern web development. When visitors experience instantaneous page transitions, conversion rates rise dramatically.",
+      "By eliminating bloated plugins, optimizing database queries, and serving WebP assets over a global CDN, WordPress delivers lightning-fast performance."
+    ],
+    tags: ["WordPress", "Performance", "Core Web Vitals", "Speed"]
+  },
+  {
+    id: "figma-to-wordpress-workflow",
+    title: "From Figma to WordPress: The Clean Architecture Workflow",
+    category: "UI/UX & Development",
+    readTime: "6 min read",
+    date: "Jan 25, 2025",
+    author: {
+      name: "Emmanuel",
+      role: "UI/UX Designer",
+      avatar: "https://res.cloudinary.com/gz77x9kx/image/upload/v1786029226/emmanuel_dkwush.png"
+    },
+    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
+    summary: "How to translate Figma design tokens, auto-layouts, and component systems into scalable WordPress themes with zero visual distortion.",
+    content: [
+      "A great developer honors the design system down to the exact pixel and spacing token.",
+      "Using custom PHP structures and clean CSS variables ensures that the live website matches the high-fidelity Figma prototype flawlessly."
+    ],
+    tags: ["Figma", "WordPress", "UI/UX", "Workflow"]
+  },
+  {
+    id: "conversion-focused-landing-pages",
+    title: "10 Structural Rules of High-Converting Landing Pages",
+    category: "Conversion UX",
+    readTime: "4 min read",
+    date: "Jan 12, 2025",
+    author: {
+      name: "Emmanuel",
+      role: "Conversion Specialist",
+      avatar: "https://res.cloudinary.com/gz77x9kx/image/upload/v1786029226/emmanuel_dkwush.png"
+    },
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
+    summary: "The visual typography hierarchy, social proof placements, and sticky CTA patterns that turn cold visitors into high-value clients.",
+    content: [
+      "A successful landing page does not confuse the visitor with multiple competing actions. It presents a single, clear, value-driven journey.",
+      "Placing social proof directly above primary CTA buttons increases click-through rates by up to 34%."
+    ],
+    tags: ["Landing Page", "CRO", "UI/UX"]
+  }
+];
+
+export const ESTIMATOR_OPTIONS: EstimatorOption[] = [
+  {
+    id: "type-wordpress",
+    name: "WordPress & Elementor Site",
+    category: "type",
+    price: 500,
+    timeDays: 10,
+    time: "1-2 weeks",
+    description: "Responsive WordPress website with Elementor and clean layouts"
+  },
+  {
+    id: "type-shopify",
+    name: "Shopify E-Commerce Store",
+    category: "type",
+    price: 750,
+    timeDays: 14,
+    time: "2 weeks",
+    description: "Full store setup, payment gateway, product catalog & checkout flow"
+  },
+  {
+    id: "type-webflow",
+    name: "Webflow Website",
+    category: "type",
+    price: 650,
+    timeDays: 12,
+    time: "1-2 weeks",
+    description: "Custom visual Webflow build with dynamic CMS collections"
+  },
+  {
+    id: "type-wix-sqsp",
+    name: "Wix / Squarespace Site",
+    category: "type",
+    price: 500,
+    timeDays: 7,
+    time: "1 week",
+    description: "Polished, low-maintenance site for service businesses & creators"
+  },
+  {
+    id: "feat-ai-chat",
+    name: "AI Chatbot & Assistant",
+    category: "feature",
+    price: 250,
+    timeDays: 3,
+    time: "3 days",
+    description: "24/7 intelligent chat assistant trained on your business"
+  },
+  {
+    id: "feat-forms",
+    name: "Automated Support & AI Forms",
+    category: "feature",
+    price: 200,
+    timeDays: 2,
+    time: "2 days",
+    description: "Smart dynamic forms with automated customer routing"
+  },
+  {
+    id: "feat-workflow",
+    name: "Workflow Automation",
+    category: "feature",
+    price: 250,
+    timeDays: 3,
+    time: "3 days",
+    description: "Connect website to CRM, email, and notification webhooks"
+  },
+  {
+    id: "feat-personalize",
+    name: "Personalized UX & AI Tools",
+    category: "feature",
+    price: 220,
+    timeDays: 3,
+    time: "3 days",
+    description: "Tailored visitor journeys and embedded smart content tools"
+  },
+  {
+    id: "speed-std",
+    name: "Standard Timeline",
+    category: "speed",
+    price: 0,
+    timeDays: 0,
+    time: "Standard",
+    description: "Standard disciplined delivery"
+  },
+  {
+    id: "speed-rush",
+    name: "Priority Fast-Track",
+    category: "speed",
+    price: 150,
+    timeDays: -3,
+    time: "Express",
+    description: "Accelerated delivery sprint"
+  }
+];
+
+export const AWARDS: AwardItem[] = [
+  {
+    id: "award-1",
+    title: "Best Educational Web Design",
+    organization: "Web Excellence Awards",
+    category: "Education & UI/UX",
+    year: "2025",
+    project: "Bright Future Academy",
+    projectTitle: "Bright Future Academy"
+  },
+  {
+    id: "award-2",
+    title: "Logistics Digital Excellence",
+    organization: "CSS Design Awards",
+    category: "Logistics & Freight",
+    year: "2024",
+    project: "Apex Global Freight",
+    projectTitle: "Apex Global Freight"
+  },
+  {
+    id: "award-3",
+    title: "Special Kudos & Performance Honor",
+    organization: "Awwwards Nominee",
+    category: "Law & Corporate UI",
+    year: "2024",
+    project: "Vance & Sterling Law",
+    projectTitle: "Vance & Sterling Law"
+  },
+  {
+    id: "award-4",
+    title: "E-Commerce Experience of the Year",
+    organization: "Global Design Awards",
+    category: "Luxury WooCommerce",
+    year: "2025",
+    project: "Maison de Luxe",
+    projectTitle: "Maison de Luxe"
   }
 ];
 
 export const FAQS: FAQItem[] = [
   {
     id: "faq-1",
-    question: "What is your typical project cost and budget range?",
-    answer: "Most of my website projects range from $1,800 to $5,000 depending on the scope. A focused landing page starts at $1,200, custom WordPress sites start at $2,200, and full custom e-commerce or WebGL platforms range from $3,200 to $6,000+. I provide exact, transparent fixed quotes before starting.",
-    category: "Pricing & Scope"
+    question: "What is your typical project timeline?",
+    answer: "A standard landing page or UI design project takes 1–2 weeks, while a full custom WordPress website or redesign typically takes 3–5 weeks depending on scope, custom features, and feedback turnaround."
   },
   {
     id: "faq-2",
-    question: "How long does a website project take to complete?",
-    answer: "Standard project timelines are 2 to 5 weeks. Landing pages take 1-2 weeks, custom WordPress sites take 3-4 weeks, and complex e-commerce platforms take 4-6 weeks. Accelerated priority timelines are available upon request.",
-    category: "Timeline"
+    question: "Do you build custom WordPress themes or use page builders?",
+    answer: "I specialize in both. I can create custom PHP WordPress themes with ACF Pro for maximum speed and simplicity, or build modular Elementor Pro setups that allow you and your team to edit content with ease."
   },
   {
     id: "faq-3",
-    question: "Do you build on WordPress or custom code (React / Next.js)?",
-    answer: "Both! I specialize in both WordPress (custom theme/Elementor builds for easy client editing) and modern custom code stacks (Next.js 15, React, Tailwind CSS). During our discovery call, we choose the exact right stack based on your team's editing needs and technical goals.",
-    category: "Tech Stack"
+    question: "Will my website be fast and mobile responsive?",
+    answer: "Yes, 100%. Every website I create is engineered mobile-first with optimized assets, clean code, and fast caching. I aim for 95+ Google PageSpeed and Core Web Vitals scores on every build."
   },
   {
     id: "faq-4",
-    question: "Will I be able to edit and update content on my site easily?",
-    answer: "Yes, 100%! If we build on WordPress, I provide custom Gutenberg blocks or intuitive Elementor Pro page builders along with a video walkthrough training recorded specifically for your team. You will never need to code to update text, photos, or blogs.",
-    category: "Content Management"
+    question: "Do you design in Figma before developing in WordPress?",
+    answer: "Yes. I first design high-fidelity, interactive prototypes in Figma for your review and approval. Once you love the design, I translate it cleanly into WordPress code."
   },
   {
     id: "faq-5",
-    question: "Do you provide Figma design source files?",
-    answer: "Yes! Every design project includes full ownership of organized Figma design source files, component design systems, typography tokens, and responsive wireframes.",
-    category: "Design Handoff"
-  },
-  {
-    id: "faq-6",
-    question: "How do you ensure my site loads fast and ranks high on Google?",
-    answer: "Every site I engineer undergoes strict speed QA testing to ensure a 95+ score on Google Lighthouse. I optimize image assets to WebP format, implement server Caching/CDN, defer non-essential scripts, and implement structured schema markup for technical SEO.",
-    category: "SEO & Speed"
+    question: "How do we get started?",
+    answer: "Simply click 'Start a Project' or send an inquiry through the contact form with your project details. I'll review your goals and schedule a discovery call to discuss scope, timeline, and exact pricing."
   }
 ];
 
-export const ARTICLES: Article[] = [
+export const KEY_FACTS: KeyFactItem[] = [
   {
-    id: "page-speed-conversion",
-    title: "How 100ms Faster Page Speed Boosts E-Commerce Conversions by 22%",
-    category: "Performance",
-    readTime: "5 min read",
-    date: "Jan 28, 2025",
-    author: {
-      name: "Alexander Vance",
-      role: "Lead Website Developer",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    summary: "Discover the technical bottlenecks causing high bounce rates on mobile e-commerce stores and how to fix Core Web Vitals to maximize revenue.",
-    content: [
-      "In modern e-commerce, speed isn't just a technical metric — it is the single highest-leverage conversion lever available.",
-      "Google's benchmark research confirms that as page load time goes from 1s to 3s, the probability of bounce increases by 32%. At 5s, bounce probability spikes by 90%.",
-      "Key fixes include migrating uncompressed PNGs to next-gen WebP/AVIF formats, deferring non-critical JavaScript, implementing server-side object caching, and leveraging edge Cloudflare CDN caching."
-    ],
-    tags: ["Page Speed", "Core Web Vitals", "WordPress", "Conversion Rate"]
+    id: "fact-projects",
+    metric: "50+",
+    label: "Websites & Platforms Delivered",
+    sublabel: "Across custom WordPress, Elementor Pro, and bespoke UI systems.",
+    iconType: "layers"
   },
   {
-    id: "micro-interactions-ux",
-    title: "Designing for Trust: Micro-Interactions in Modern SaaS Landing Pages",
-    category: "UI/UX Design",
-    readTime: "7 min read",
-    date: "Feb 10, 2025",
-    author: {
-      name: "Alexander Vance",
-      role: "UI/UX Designer",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-    summary: "How deliberate spring animations, button tactile feedback, and subtle hover states guide user attention and build immediate brand credibility.",
-    content: [
-      "Micro-interactions are the subtle, single-use visual feedback cues that communicate system status to the user.",
-      "When a user clicks 'Book Consultation' and sees a satisfying spring animation, confirmation chime, or subtle pulse, confidence in the software increases instantly.",
-      "In this guide, we break down Figma prototyping tokens, GSAP easing functions, and hover states that feel luxurious without lagging browser frames."
-    ],
-    tags: ["UI/UX", "Figma", "Micro-Interactions", "SaaS"]
+    id: "fact-experience",
+    metric: "4+",
+    label: "Years of Design & Engineering",
+    sublabel: "Specializing in end-to-end Figma to production deployments.",
+    iconType: "clock"
   },
   {
-    id: "wordpress-vs-nextjs",
-    title: "Headless WordPress vs Custom Next.js 15: Choosing the Right Stack in 2025",
-    category: "Architecture",
-    readTime: "6 min read",
-    date: "Jan 14, 2025",
-    author: {
-      name: "Alexander Vance",
-      role: "Full-Stack Developer",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    summary: "An honest breakdown comparing custom WordPress builds, headless GraphQL setups, and full Next.js 15 architectures for growing businesses.",
-    content: [
-      "Clients frequently ask: 'Should I build on WordPress or Next.js?' The answer depends entirely on your team's content editing workflows and performance objectives.",
-      "WordPress excels when your marketing team needs to publish blog posts, landing pages, and edit ACF fields daily without developer intervention.",
-      "Next.js 15 shines when you require custom WebGL animations, edge API routing, app dashboard portals, or extreme multi-region CDN speed."
-    ],
-    tags: ["WordPress", "Next.js", "Web Architecture", "GraphQL"]
+    id: "fact-performance",
+    metric: "99/100",
+    label: "Average Google PageSpeed Score",
+    sublabel: "Sub-second load times engineered with clean PHP & asset caching.",
+    iconType: "zap"
   },
   {
-    id: "ai-prompt-engineering-web",
-    title: "Generative AI Workflows for High-Speed Design Prototyping",
-    category: "AI & Design",
-    readTime: "4 min read",
-    date: "Feb 02, 2025",
-    author: {
-      name: "Alexander Vance",
-      role: "Creative Director",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-    summary: "How blending generative image models with vector Figma systems cuts client moodboard review cycles from weeks to under 48 hours.",
-    content: [
-      "Artificial intelligence is transforming the preliminary concept phase for elite creative agencies.",
-      "By establishing brand color palettes and typography rules first, AI visual generation creates tailored studio mockups that resonate deeply with stakeholders."
-    ],
-    tags: ["AI", "Design Systems", "Prototyping"]
+    id: "fact-revenue",
+    metric: "$14M+",
+    label: "Client Revenue & Pipeline Driven",
+    sublabel: "Through high-converting funnels, WooCommerce, and corporate leads.",
+    iconType: "trending"
   },
   {
-    id: "high-converting-landing-formulas",
-    title: "10 Structural Rules of High-Converting B2B Landing Pages",
-    category: "Conversion UX",
-    readTime: "8 min read",
-    date: "Jan 05, 2025",
-    author: {
-      name: "Alexander Vance",
-      role: "Conversion Specialist",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-    summary: "The visual typography hierarchy, social proof placements, and sticky CTA patterns that turn cold traffic into high-ticket inbound leads.",
-    content: [
-      "A successful landing page does not confuse the visitor with multiple competing actions. It presents a single, clear, value-driven journey.",
-      "Placing social proof directly above primary CTA buttons increases click-through rates by up to 34%."
-    ],
-    tags: ["Landing Page", "CRO", "Copywriting"]
+    id: "fact-ontime",
+    metric: "100%",
+    label: "On-Time Project Delivery",
+    sublabel: "Strict sprint milestones, transparent timelines, and QA staging.",
+    iconType: "check"
   },
   {
-    id: "seo-schema-for-agencies",
-    title: "Technical SEO & Schema Markup Strategies for Local Dominance",
-    category: "Technical SEO",
-    readTime: "5 min read",
-    date: "Dec 18, 2024",
-    author: {
-      name: "Alexander Vance",
-      role: "SEO Architect",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-    },
-    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=1200&q=80",
-    summary: "How JSON-LD structured data, canonical routing, and clean sitemap indexing propel agency clients to Google page-one rich snippets.",
-    content: [
-      "Search engines no longer just read plain text; they parse entity relationships via JSON-LD schema.",
-      "Implementing rich organization, FAQ, and project schema ensures prominent Google search panel feature placement."
-    ],
-    tags: ["SEO", "JSON-LD", "Google Analytics"]
+    id: "fact-clients",
+    metric: "20+",
+    label: "Global Enterprise & Brand Clients",
+    sublabel: "Partnering with businesses across US, UK, Europe, and worldwide.",
+    iconType: "globe"
   }
 ];
 
-export const ESTIMATOR_OPTIONS: EstimatorOption[] = [
-  { id: "landing", name: "High-Converting Landing Page", price: 1200, timeDays: 7, category: "Type", description: "1-page conversion page for ads, SaaS, or consultations" },
-  { id: "custom-wp", name: "Custom WordPress Website (5-8 Pages)", price: 2400, timeDays: 21, category: "Type", description: "Bespoke WordPress theme with Elementor/Gutenberg blocks" },
-  { id: "ecommerce", name: "WooCommerce E-Commerce Store", price: 3400, timeDays: 30, category: "Type", description: "Online store with Stripe checkout, filters, & products" },
-  { id: "app-ui", name: "Next.js / Custom React Web App", price: 3800, timeDays: 28, category: "Type", description: "Full custom web application or WebGL experience" },
-  
-  { id: "figma-design", name: "Bespoke Figma UI/UX Design", price: 800, timeDays: 5, category: "Addon", description: "Full custom Figma design system and wireframes" },
-  { id: "seo-pack", name: "Advanced Technical SEO & Schema", price: 450, timeDays: 3, category: "Addon", description: "Schema markup, XML sitemap, rank tracking setup" },
-  { id: "booking-addon", name: "Automated Booking & Deposit Gateway", price: 500, timeDays: 4, category: "Addon", description: "Calendly/Acuity calendar sync with Stripe deposit collection" },
-  { id: "maintenance-plan", name: "3 Months Care & Security Retainer", price: 650, timeDays: 0, category: "Addon", description: "24/7 uptime monitoring, daily backups, priority updates" }
-];
-
-export const AWARDS: AwardItem[] = [
+export const TEAM_MEMBERS: TeamMemberItem[] = [
   {
-    id: "awwwards-site-of-day",
-    organization: "Awwwards",
-    title: "Site of the Day Nominee",
-    category: "3D Spatial Web Design",
-    year: "2025",
-    projectTitle: "Aetheria Spatial Real Estate"
+    id: "team-emmanuel",
+    name: "Emmanuel",
+    role: "Founder, Lead Developer & UI/UX Director",
+    specialization: "WordPress Engineering, Figma Architecture, Technical Strategy",
+    bio: "Guiding the creative vision and architectural standards for every client build, bridging design fidelity with clean, scalable code.",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80",
+    experience: "4+ Years",
+    socials: {
+      linkedin: "https://linkedin.com",
+      twitter: "https://twitter.com",
+      github: "https://github.com",
+      dribbble: "https://dribbble.com"
+    }
   },
   {
-    id: "css-design-awards",
-    organization: "CSS Design Awards",
-    title: "Special Kudos & Best UI/UX",
-    category: "WordPress Engineering",
-    year: "2024",
-    projectTitle: "Vanguard Wealth Portal"
+    id: "team-marcus",
+    name: "Marcus Reed",
+    role: "Senior Frontend & Interaction Engineer",
+    specialization: "Tailwind CSS, GSAP / Framer Motion, Responsive Systems",
+    bio: "Crafting fluid micro-interactions, responsive CSS layouts, and performance-tuned motion that brings digital interfaces to life.",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+    experience: "5+ Years",
+    socials: {
+      linkedin: "https://linkedin.com",
+      github: "https://github.com"
+    }
   },
   {
-    id: "fwa-of-the-day",
-    organization: "FWA",
-    title: "FWA Of The Day",
-    category: "Luxury E-Commerce",
-    year: "2024",
-    projectTitle: "KROMA Geneva"
+    id: "team-elena",
+    name: "Elena Vance",
+    role: "Design Systems & UI/UX Specialist",
+    specialization: "Figma Components, Typography Hierarchy, Conversion UX",
+    bio: "Architecting high-contrast design tokens, WCAG-compliant design systems, and user journey funnels optimized for measurable conversion.",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    experience: "4+ Years",
+    socials: {
+      dribbble: "https://dribbble.com",
+      linkedin: "https://linkedin.com"
+    }
   },
   {
-    id: "google-speed-badge",
-    organization: "Google Core Web Vitals",
-    title: "99/100 Mobile Speed Certified",
-    category: "Performance Optimization",
-    year: "2025",
-    projectTitle: "Solis Health Landing"
+    id: "team-david",
+    name: "David Chen",
+    role: "WordPress Infrastructure & Speed Engineer",
+    specialization: "PHP 8.2, Cloudflare CDN, Object Caching, Core Web Vitals",
+    bio: "Hardening server infrastructures, tuning MySQL database queries, and achieving sub-second global response times on every deployment.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+    experience: "6+ Years",
+    socials: {
+      github: "https://github.com",
+      twitter: "https://twitter.com"
+    }
   }
 ];
+

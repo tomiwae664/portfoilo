@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { PageView } from '../types';
-import { Sparkles, Volume2, VolumeX, Menu, X, Sun, Moon, Calculator, ArrowUpRight } from 'lucide-react';
+import { Volume2, VolumeX, Menu, X, ArrowUpRight, Sparkles, Sliders } from 'lucide-react';
 import { soundFx } from '../utils/audio';
+import { CurrencySelector } from './CurrencySelector';
 
 interface NavbarProps {
   activePage: PageView;
   onNavigate: (page: PageView) => void;
-  onOpenAI: () => void;
-  onOpenEstimator: () => void;
+  onOpenEstimator?: () => void;
+  onOpenAI?: () => void;
   isMenuOpen: boolean;
   setIsMenuOpen: (open: boolean) => void;
 }
@@ -15,201 +16,195 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({
   activePage,
   onNavigate,
-  onOpenAI,
   onOpenEstimator,
+  onOpenAI,
   isMenuOpen,
   setIsMenuOpen
 }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [isLight, setIsLight] = useState(true);
+  const [currentTime, setCurrentTime] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const toggleTheme = () => {
-    soundFx.playClick();
-    const newIsLight = !isLight;
-    setIsLight(newIsLight);
-    if (newIsLight) {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
-    } else {
-      document.documentElement.classList.remove('light');
-      document.documentElement.classList.add('dark');
-    }
-  };
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: true }).toLowerCase();
+      const dateStr = now.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      setCurrentTime(`${timeStr} • ${dateStr}`);
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const toggleSound = () => {
     const muted = soundFx.toggleMute();
     setIsMuted(muted);
   };
 
-  const navItems: { label: string; page: PageView; hash?: string }[] = [
+  const navItems: { label: string; page: PageView; hasSub?: boolean }[] = [
     { label: 'Home', page: 'home' },
+    { label: 'Product', page: 'services', hasSub: true },
     { label: 'About', page: 'about' },
-    { label: 'Services', page: 'services' },
-    { label: 'Projects', page: 'portfolio' },
-    { label: 'Process', page: 'home', hash: '#process' },
-    { label: 'Contact', page: 'contact' }
+    { label: 'Brands', page: 'home' },
+    { label: 'Careers', page: 'home' },
+    { label: 'Partners', page: 'home' }
   ];
 
-  const handleNavClick = (item: { label: string; page: PageView; hash?: string }) => {
+  const handleNavClick = (item: { label: string; page: PageView }) => {
     soundFx.playClick();
-    onNavigate(item.page);
-    if (item.hash) {
+    if (item.label === 'Partners') {
+      if (activePage !== 'home') onNavigate('home');
       setTimeout(() => {
-        const el = document.querySelector(item.hash!);
+        const el = document.getElementById('partners') || document.getElementById('selected-work');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
       }, 100);
+      return;
     }
+    if (item.label === 'Brands') {
+      if (activePage !== 'home') onNavigate('home');
+      setTimeout(() => {
+        const el = document.getElementById('key-facts') || document.getElementById('selected-work');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+    if (item.label === 'Careers') {
+      if (activePage !== 'home') onNavigate('home');
+      setTimeout(() => {
+        const el = document.getElementById('about') || document.getElementById('contact');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+      return;
+    }
+    onNavigate(item.page);
   };
 
   return (
-    <header className="fixed top-4 left-0 right-0 z-50 px-4 sm:px-8 flex justify-center pointer-events-none">
-      <div className="max-w-[1440px] w-full mx-auto flex items-center justify-between h-[82px] px-6 sm:px-10 rounded-full bg-white/80 backdrop-blur-[24px] border border-white/60 shadow-[0_20px_60px_rgba(0,0,0,0.08)] pointer-events-auto transition-all duration-300">
+    <header
+      id="main-navbar"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'py-3.5 bg-[#EDEDEE]/90 backdrop-blur-xl border-b border-black/[0.08] shadow-[0_4px_20px_rgba(0,0,0,0.04)] text-[#0E1015]'
+          : 'py-4 sm:py-5 bg-transparent text-[#0E1015]'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
         
-        {/* Left: Personal Logo */}
+        {/* Left: Brand Logo */}
         <button
+          id="brand-logo-btn"
           onClick={() => {
             soundFx.playClick();
             onNavigate('home');
           }}
-          onMouseEnter={() => soundFx.playHover()}
-          className="flex items-center gap-3.5 group text-left"
-          data-cursor="hover"
+          className="group flex items-center gap-2 text-left tracking-tight cursor-pointer"
         >
-          <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-violet-600 p-[1.5px] transition-transform duration-300 group-hover:scale-105 shadow-sm">
-            <div className="w-full h-full bg-[#0F172A] rounded-[14px] flex items-center justify-center font-extrabold text-base text-white font-heading">
-              AV
-            </div>
+          {/* Futuristic Hex/Geometric glyph like the reference */}
+          <div className="w-6 h-6 sm:w-7 sm:h-7 relative flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-full h-full fill-current" fill="none">
+              <path d="M12 2L3 7V17L12 22L21 17V7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" fill="none" className="text-[#0E1015]" />
+              <circle cx="12" cy="12" r="3" fill="#FF7A00" />
+            </svg>
           </div>
-          <div>
-            <div className="font-extrabold text-base tracking-tight text-[#0F172A] flex items-center gap-2 font-heading">
-              <span>Alexander Vance</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-            </div>
-            <div className="text-[10px] text-[#64748B] font-mono tracking-wider hidden sm:block">
-              WEBSITE DEVELOPER & UI/UX DESIGNER
-            </div>
-          </div>
+          <span className="font-black text-base sm:text-lg tracking-[-0.03em] font-display text-[#0E1015]">
+            Zenrixa <span className="text-xs font-display font-normal opacity-50 ml-1">/ Emmanuel</span>
+          </span>
         </button>
 
-        {/* Center Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-1 bg-[#EEF2F7]/80 px-3 py-1.5 rounded-full border border-black/5">
+        {/* Center Nav Links (Desktop) */}
+        <nav className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
-            const isActive = activePage === item.page && !item.hash;
+            const isActive = activePage === item.page && (item.label === 'Home' ? activePage === 'home' : true);
             return (
               <button
                 key={item.label}
+                id={`nav-link-${item.label.toLowerCase()}`}
                 onClick={() => handleNavClick(item)}
                 onMouseEnter={() => soundFx.playHover()}
-                className={`px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-all duration-200 font-heading ${
+                className={`text-xs sm:text-sm font-display font-semibold transition-colors relative py-1 cursor-pointer flex items-center gap-1 ${
                   isActive
-                    ? 'text-white bg-[#0F172A] shadow-md'
-                    : 'text-[#64748B] hover:text-[#0F172A] hover:bg-white/80'
+                    ? 'text-[#0E1015]'
+                    : 'text-[#5B606D] hover:text-[#0E1015]'
                 }`}
-                data-cursor="hover"
               >
-                {item.label}
+                <span>{item.label}</span>
+                {item.hasSub && (
+                  <span className="text-[10px] opacity-60">ˇ</span>
+                )}
+                {isActive && (
+                  <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#FF7A00]" />
+                )}
               </button>
             );
           })}
         </nav>
 
-        {/* Right Controls & Availability & CTA */}
-        <div className="flex items-center gap-3">
+        {/* Right Section: Currency Selector, Timezone & = MENU Pill Button */}
+        <div className="flex items-center gap-2 sm:gap-3">
           
-          {/* Availability Status */}
-          <div className="hidden md:flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-[#22C55E]/10 border border-[#22C55E]/30 text-[#16A34A] text-xs font-semibold font-mono">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#22C55E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#22C55E]" />
+          {/* Global Multi-Currency Country Selector */}
+          <CurrencySelector variant="navbar" />
+
+          {/* Timezone live widget */}
+          <div className="hidden lg:flex flex-col text-right leading-tight pr-1">
+            <span className="text-[10px] font-display uppercase tracking-wider text-[#747884]">
+              Timezone
             </span>
-            <span>Available for Projects</span>
+            <span className="text-xs font-display font-semibold text-[#0E1015]">
+              {currentTime || '6:30pm • 23 June, 2024'}
+            </span>
           </div>
 
-          {/* Theme & Sound Controls */}
-          <div className="hidden sm:flex items-center gap-1 bg-white p-1 rounded-full border border-black/5">
-            <button
-              onClick={toggleTheme}
-              onMouseEnter={() => soundFx.playHover()}
-              className="p-2 rounded-full text-[#0F172A] hover:bg-[#EEF2F7] transition-all"
-              title={isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
-              data-cursor="hover"
-            >
-              {isLight ? <Moon className="w-3.5 h-3.5 text-indigo-600" /> : <Sun className="w-3.5 h-3.5 text-amber-400" />}
-            </button>
+          {/* Sound Mute Toggle */}
+          <button
+            id="sound-toggle-btn"
+            onClick={toggleSound}
+            onMouseEnter={() => soundFx.playHover()}
+            className="p-2 rounded-full border transition-all cursor-pointer bg-white/80 border-black/[0.08] text-[#5B606D] hover:text-[#0E1015] shadow-sm"
+            title={isMuted ? 'Unmute Audio' : 'Mute Audio'}
+          >
+            {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#FF7A00]" />}
+          </button>
 
+          {/* AI Search Radar Button */}
+          {onOpenAI && (
             <button
-              onClick={toggleSound}
-              onMouseEnter={() => soundFx.playHover()}
-              className="p-2 rounded-full text-[#0F172A] hover:bg-[#EEF2F7] transition-all"
-              title={isMuted ? 'Unmute Sound' : 'Mute Sound'}
-              data-cursor="hover"
-            >
-              {isMuted ? <VolumeX className="w-3.5 h-3.5 text-[#64748B]" /> : <Volume2 className="w-3.5 h-3.5 text-blue-600" />}
-            </button>
-
-            <button
+              id="navbar-ai-assistant-btn"
               onClick={() => {
                 soundFx.playClick();
-                onOpenEstimator();
+                onOpenAI();
               }}
               onMouseEnter={() => soundFx.playHover()}
-              className="p-2 rounded-full text-blue-600 hover:bg-blue-50 transition-all"
-              title="Project Scope Calculator"
-              data-cursor="hover"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-full bg-white hover:bg-[#0E1015] hover:text-white border border-black/10 text-xs font-display font-semibold transition-all cursor-pointer shadow-sm text-[#0E1015]"
+              title="Google Search Grounded AI Intelligence"
             >
-              <Calculator className="w-3.5 h-3.5" />
+              <Sparkles className="w-3.5 h-3.5 text-[#FF7A00]" />
+              <span>AI Radar</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             </button>
-          </div>
+          )}
 
-          {/* Premium CTA Button: "Let's Talk" */}
+          {/* = MENU Pill Button from the reference design */}
           <button
-            onClick={() => {
-              soundFx.playClick();
-              onNavigate('contact');
-            }}
-            onMouseEnter={() => soundFx.playHover()}
-            className="px-6 py-2.5 rounded-full text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2 font-heading active:scale-95"
-            data-cursor="hover"
-          >
-            <span>Let's Talk</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </button>
-
-          {/* AI Assistant Quick Trigger */}
-          <button
-            onClick={() => {
-              soundFx.playClick();
-              onOpenAI();
-            }}
-            onMouseEnter={() => soundFx.playHover()}
-            className="p-2.5 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-600 hover:bg-indigo-100 transition-all"
-            title="Ask AI Assistant"
-            data-cursor="hover"
-          >
-            <Sparkles className="w-4 h-4" />
-          </button>
-
-          {/* Mobile Menu Toggle */}
-          <button
+            id="nav-menu-btn"
             onClick={() => {
               soundFx.playClick();
               setIsMenuOpen(!isMenuOpen);
             }}
             onMouseEnter={() => soundFx.playHover()}
-            className="lg:hidden w-10 h-10 rounded-full bg-white border border-black/10 text-[#0F172A] flex items-center justify-center transition-all"
-            aria-label="Toggle Navigation Menu"
-            data-cursor="hover"
+            className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-semibold font-display tracking-wider transition-all duration-300 flex items-center gap-2 cursor-pointer shadow-sm bg-white hover:bg-[#0E1015] hover:text-white border border-black/10 text-[#0E1015]"
           >
-            {isMenuOpen ? <X className="w-5 h-5 text-blue-600" /> : <Menu className="w-5 h-5" />}
+            <span className="text-sm font-light leading-none">=</span>
+            <span className="text-xs uppercase tracking-wider">MENU</span>
           </button>
 
         </div>
@@ -218,4 +213,3 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
-

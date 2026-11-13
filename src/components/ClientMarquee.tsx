@@ -1,46 +1,37 @@
 import React from 'react';
 
 export const ClientMarquee: React.FC = () => {
-  const clients = [
-    { name: 'WORDPRESS PRO', category: 'PHP & CUSTOM THEMES', icon: '🌐' },
-    { name: 'ELEMENTOR PRO', category: 'EXPERT BUILDER', icon: '🎨' },
-    { name: 'REACT & NEXT.JS 15', category: 'FRONTEND ARCHITECTURE', icon: '⚛️' },
-    { name: 'FIGMA UI/UX', category: 'DESIGN SYSTEMS', icon: '❖' },
-    { name: 'WOOCOMMERCE', category: 'LUXURY E-COMMERCE', icon: '🛍️' },
-    { name: 'TAILWIND CSS', category: 'UTILITY STYLING', icon: '🌊' },
-    { name: 'STRIPE PAYMENTS', category: 'CHECKOUT & DEPOSITS', icon: '💳' },
-    { name: 'VERCEL & CLOUDFLARE', category: '95+ LIGHTHOUSE SPEED', icon: '⚡' }
+  const stacks = [
+    { name: 'WORDPRESS', detail: 'CUSTOM THEMES & ACF' },
+    { name: 'FIGMA', detail: 'UI/UX & DESIGN SYSTEMS' },
+    { name: 'ELEMENTOR PRO', detail: 'PIXEL-PERFECT TEMPLATES' },
+    { name: 'WOOCOMMERCE', detail: 'E-COMMERCE ARCHITECTURE' },
+    { name: 'HTML5 & CSS3', detail: 'SEMANTIC MARKUP' },
+    { name: 'JAVASCRIPT', detail: 'INTERACTIVE MOTIONS' },
+    { name: 'PHP', detail: 'BACKEND HOOKS & APIS' },
+    { name: 'SPEED & SEO', detail: '95+ CORE WEB VITALS' }
   ];
 
   return (
-    <section id="clients" className="py-12 bg-[var(--bg-surface)] border-y border-[var(--border-color)] overflow-hidden relative z-10 transition-colors duration-300">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 text-center">
-        <span className="text-[11px] font-mono font-bold tracking-widest text-blue-400 uppercase font-heading">
-          ENGINEERED WITH MODERN STACKS & TRUSTED BY GROWTH BRANDS
-        </span>
-      </div>
-
-      {/* Ticker Track */}
+    <section className="py-7 bg-[#E6E8EC] border-y border-black/[0.08] overflow-hidden relative z-10 select-none">
       <div className="flex whitespace-nowrap overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex animate-marquee gap-6">
-          {[...clients, ...clients].map((client, idx) => (
+        <div className="flex animate-marquee gap-8">
+          {[...stacks, ...stacks].map((item, idx) => (
             <div
               key={idx}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-[var(--bg-main)] border border-[var(--border-color)] hover:border-blue-500/50 hover:bg-blue-950/20 transition-all duration-300 group cursor-pointer"
+              className="inline-flex items-center gap-3.5 px-6 py-2.5 rounded-full bg-white/90 border border-black/[0.08] hover:border-[#FF7A00]/60 shadow-[0_4px_15px_rgba(0,0,0,0.03)] transition-all"
             >
-              <span className="text-xl group-hover:scale-125 transition-transform">{client.icon}</span>
-              <div className="text-left">
-                <div className="text-xs font-extrabold text-[var(--text-main)] font-mono tracking-wider group-hover:text-blue-400 transition-colors">
-                  {client.name}
-                </div>
-                <div className="text-[9px] font-mono text-[var(--text-muted)]">{client.category}</div>
-              </div>
+              <span className="w-1.5 h-1.5 rounded-full bg-[#FF7A00]" />
+              <span className="text-xs font-bold font-display uppercase tracking-wider text-[#0E1015]">
+                {item.name}
+              </span>
+              <span className="text-[10px] font-mono text-[#5B606D] uppercase tracking-widest">
+                / {item.detail}
+              </span>
             </div>
           ))}
         </div>
       </div>
-
     </section>
   );
 };

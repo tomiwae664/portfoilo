@@ -1,73 +1,83 @@
 import React from 'react';
 import { TESTIMONIALS } from '../data/portfolioData';
-import { Star, Quote, CheckCircle2 } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
+import { soundFx } from '../utils/audio';
 
 export const TestimonialsSection: React.FC = () => {
   return (
-    <section id="testimonials" className="py-24 bg-[var(--bg-main)] text-[var(--text-main)] relative z-10 overflow-hidden transition-colors duration-300">
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section
+      id="testimonials"
+      className="relative w-full bg-[#EDEDEE] text-[#0E1015] py-24 sm:py-32 lg:py-36 px-6 sm:px-10 overflow-hidden border-t border-black/[0.08]"
+    >
+      {/* Ambient Lighting */}
+      <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-white/60 rounded-full blur-[160px] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold tracking-widest uppercase mb-4 font-heading">
-            • CLIENT TESTIMONIALS •
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 sm:mb-20 gap-8">
+          <div>
+            <div className="flex items-center gap-2 mb-6">
+              <span className="w-[2px] h-3.5 bg-[#FF7A00]" />
+              <span className="text-xs sm:text-sm font-semibold font-display tracking-tight text-[#FF7A00]">
+                07 / CLIENT ENDORSEMENTS & REPUTATION
+              </span>
+            </div>
+
+            <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-[62px] xl:text-[70px] tracking-[-0.038em] leading-[1.05] text-[#0E1015]">
+              WHAT CLIENTS <br />
+              <span className="text-[#FF7A00]">EXPERIENCE.</span>
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] tracking-tight font-heading">
-            Trusted By Clients. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              Validated By Proven Growth.
-            </span>
-          </h2>
+
+          <p className="text-base sm:text-lg text-[#5B606D] max-w-md font-display leading-relaxed">
+            Real feedback from business founders, creative directors, and school administrators across 50+ delivered projects.
+          </p>
         </div>
 
-        {/* Testimonial Cards Grid */}
+        {/* Testimonials Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {TESTIMONIALS.map((t) => (
             <div
               key={t.id}
-              className="bg-[var(--bg-surface)] p-6 rounded-3xl border border-[var(--border-color)] hover:border-blue-500/50 transition-all duration-300 flex flex-col justify-between shadow-xl"
+              onMouseEnter={() => soundFx.playHover()}
+              className="p-8 rounded-3xl bg-white border border-black/[0.08] hover:border-[#FF7A00]/40 transition-all duration-300 flex flex-col justify-between shadow-[0_15px_35px_rgba(0,0,0,0.04)] group hover:-translate-y-1"
             >
               <div>
-                {/* Rating & Result Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-1 text-amber-400">
+                {/* Header: Stars & Orange Quote */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex text-[#FF7A00] gap-1">
                     {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
+                      <Star key={i} className="w-3.5 h-3.5 fill-[#FF7A00] stroke-none" />
                     ))}
                   </div>
-                  <Quote className="w-6 h-6 text-blue-500/30" />
+                  <Quote className="w-6 h-6 text-[#FF7A00]/40 group-hover:text-[#FF7A00] transition-colors" />
                 </div>
 
-                <div className="inline-block px-2.5 py-1 rounded-full bg-blue-950/80 border border-blue-500/30 text-[10px] font-mono font-bold text-cyan-400 mb-4">
-                  {t.result}
-                </div>
-
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed italic mb-6 font-body">
-                  "{t.content}"
+                {/* Quote Text */}
+                <p className="text-xs sm:text-sm text-[#0E1015] leading-relaxed mb-6 font-display">
+                  "{t.quote || t.content}"
                 </p>
               </div>
 
-              {/* Author */}
-              <div className="flex items-center gap-3 pt-4 border-t border-[var(--border-color)]">
+              {/* Author Info */}
+              <div className="pt-6 border-t border-black/[0.06] flex items-center gap-3">
                 <img
                   src={t.avatar}
-                  alt={t.name}
-                  className="w-10 h-10 rounded-full object-cover border-2 border-blue-500/40"
+                  alt={t.author || t.name || 'Client'}
+                  className="w-11 h-11 rounded-full object-cover border border-[#FF7A00]/30"
                 />
                 <div>
-                  <div className="text-xs font-bold text-[var(--text-main)] font-heading">{t.name}</div>
-                  <div className="text-[10px] text-blue-400 font-mono">{t.role}</div>
-                  <div className="text-[9px] font-mono text-[var(--text-muted)]">{t.company}</div>
+                  <div className="text-xs sm:text-sm font-bold font-display text-[#0E1015]">{t.author || t.name}</div>
+                  <div className="text-xs font-display text-[#FF7A00] font-semibold">{t.role}</div>
+                  <div className="text-xs text-[#5B606D] font-display">{t.company}</div>
                 </div>
               </div>
-
             </div>
           ))}
         </div>
 
       </div>
-
     </section>
   );
 };

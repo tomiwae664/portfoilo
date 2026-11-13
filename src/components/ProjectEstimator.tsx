@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { ESTIMATOR_OPTIONS } from '../data/portfolioData';
-import { Calculator, X, Check, Send } from 'lucide-react';
+import { Calculator, X, Check, Send, Globe } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { soundFx } from '../utils/audio';
+import { useCurrency } from '../context/CurrencyContext';
+import { CurrencySelector } from './CurrencySelector';
 
 interface ProjectEstimatorProps {
   isOpen: boolean;
@@ -10,8 +12,9 @@ interface ProjectEstimatorProps {
 }
 
 export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onClose }) => {
-  const [selectedType, setSelectedType] = useState<string>('type-website');
-  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(['feat-seo', 'feat-anim']);
+  const { formatPrice, currency } = useCurrency();
+  const [selectedType, setSelectedType] = useState<string>('type-wordpress');
+  const [selectedFeatures, setSelectedFeatures] = useState<string[]>(['feat-ai-chat']);
   const [selectedSpeed, setSelectedSpeed] = useState<string>('speed-std');
 
   const [clientName, setClientName] = useState('');
@@ -27,7 +30,6 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
     );
   };
 
-  // Calculations
   const typeOpt = ESTIMATOR_OPTIONS.find((o) => o.id === selectedType);
   const speedOpt = ESTIMATOR_OPTIONS.find((o) => o.id === selectedSpeed);
   const featureOpts = ESTIMATOR_OPTIONS.filter((o) => selectedFeatures.includes(o.id));
@@ -56,57 +58,75 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
   };
 
   return (
-    <div className="fixed inset-0 z-[120] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-in fade-in duration-200">
-      <div className="bg-[var(--bg-surface)] border border-blue-500/40 rounded-3xl max-w-4xl w-full p-6 sm:p-10 relative max-h-[92vh] overflow-y-auto shadow-2xl text-[var(--text-main)]">
+    <div className="fixed inset-0 z-[120] bg-black/60 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto animate-in fade-in duration-200">
+      <div className="bg-white border border-black/[0.08] rounded-3xl max-w-4xl w-full p-6 sm:p-10 relative max-h-[92vh] overflow-y-auto shadow-2xl text-[#0E1015]">
         
         {/* Top Header */}
-        <div className="flex items-center justify-between pb-6 border-b border-[var(--border-color)] mb-8 font-heading">
+        <div className="flex items-center justify-between pb-6 border-b border-black/[0.08] mb-8 gap-4 flex-wrap sm:flex-nowrap">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-400/30 flex items-center justify-center text-blue-400">
-              <Calculator className="w-5 h-5 text-blue-400" />
+            <div className="w-10 h-10 rounded-xl bg-[#FF7A00]/10 border border-[#FF7A00]/20 flex items-center justify-center text-[#FF7A00] shrink-0">
+              <Calculator className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold">Project Scope & Cost Calculator</h2>
-              <p className="text-xs text-blue-400 font-mono">Calculate estimated project timeline and budget range</p>
+              <h2 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-[#0E1015] font-display">Scope & Investment Calculator</h2>
+              <p className="text-xs text-[#FF7A00] font-mono font-medium">Calculate estimated project timeline and budget range</p>
             </div>
           </div>
 
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-[var(--text-main)] flex items-center justify-center transition-all"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-3 ml-auto">
+            {/* Currency Selector inside Calculator */}
+            <div className="hidden sm:flex items-center gap-2 bg-[#F5F6F8] px-3 py-1.5 rounded-full border border-black/[0.06]">
+              <span className="text-[11px] font-display text-[#5B606D]">Currency:</span>
+              <CurrencySelector variant="compact" />
+            </div>
+
+            <button
+              onClick={() => {
+                soundFx.playClick();
+                onClose();
+              }}
+              className="w-10 h-10 rounded-full bg-[#F5F6F8] hover:bg-[#0E1015] hover:text-white text-[#0E1015] flex items-center justify-center transition-all cursor-pointer shadow-sm shrink-0"
+              aria-label="Close estimator"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Currency Selector Bar */}
+        <div className="sm:hidden flex items-center justify-between bg-[#F5F6F8] px-3.5 py-2 rounded-xl border border-black/[0.06] mb-6">
+          <span className="text-xs font-display text-[#5B606D]">Select Currency:</span>
+          <CurrencySelector variant="compact" />
         </div>
 
         {submitted ? (
           <div className="py-16 text-center space-y-6 animate-in zoom-in-95 duration-300">
-            <div className="w-20 h-20 bg-emerald-500/20 rounded-full border-2 border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto text-3xl font-bold">
+            <div className="w-16 h-16 bg-[#FF7A00]/15 rounded-full border border-[#FF7A00] text-[#FF7A00] flex items-center justify-center mx-auto text-3xl font-bold">
               ✓
             </div>
-            <h3 className="text-2xl font-bold text-[var(--text-main)] font-heading">Estimate Brief Received!</h3>
-            <p className="text-sm text-[var(--text-muted)] max-w-md mx-auto font-body">
-              Thank you <span className="text-blue-400 font-bold">{clientName}</span>. Alexander Vance will review your brief (${totalPrice.toLocaleString()} estimated) and respond to <span className="text-cyan-400 font-bold">{clientEmail}</span> within 24 hours.
+            <h3 className="text-2xl font-bold text-[#0E1015] font-display">Estimate Brief Received</h3>
+            <p className="text-sm text-[#5B606D] max-w-md mx-auto">
+              Thank you <span className="text-[#FF7A00] font-bold">{clientName}</span>. Emmanuel will review your requirements ({formatPrice(totalPrice)} estimated) and reply to <span className="text-[#0E1015] font-bold">{clientEmail}</span> within 24 hours.
             </p>
             <button
               onClick={() => {
                 setSubmitted(false);
                 onClose();
               }}
-              className="px-8 py-3 rounded-full bg-blue-600 text-white font-bold text-xs font-heading"
+              className="px-8 py-3 rounded-full bg-[#FF7A00] hover:bg-[#FF8F26] text-[#0E1015] font-bold text-xs uppercase tracking-wider font-display cursor-pointer shadow-md"
             >
               Close Calculator
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             {/* Left Controls */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-6">
               
               {/* Step 1: Project Type */}
               <div>
-                <label className="text-xs font-mono font-bold text-blue-400 uppercase tracking-wider block mb-3 font-heading">
+                <label className="text-xs font-mono font-bold text-[#FF7A00] uppercase tracking-wider block mb-3 font-display">
                   1. SELECT PROJECT TYPE:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -120,15 +140,15 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
                           soundFx.playClick();
                           setSelectedType(opt.id);
                         }}
-                        className={`p-4 rounded-2xl border text-left transition-all ${
+                        className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
                           isSel
-                            ? 'bg-blue-950/80 border-blue-400 text-white shadow-lg'
-                            : 'bg-[var(--bg-main)] border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-surface)] hover:text-[var(--text-main)]'
+                            ? 'bg-[#FF7A00]/10 border-[#FF7A00] text-[#0E1015] shadow-sm'
+                            : 'bg-[#F5F6F8] border-black/[0.06] text-[#5B606D] hover:border-black/20'
                         }`}
                       >
-                        <div className="text-xs font-bold font-heading">{opt.name}</div>
-                        <div className="text-[10px] text-blue-300 font-mono mt-1">
-                          From ${opt.price.toLocaleString()} • ~{Math.ceil(opt.timeDays / 7)}wks
+                        <div className="text-xs font-bold font-display text-[#0E1015]">{opt.name}</div>
+                        <div className="text-[10px] text-[#FF7A00] font-mono mt-1 font-bold">
+                          From {formatPrice(opt.price)} • ~{Math.ceil(opt.timeDays / 7)}wks
                         </div>
                       </button>
                     );
@@ -138,7 +158,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
 
               {/* Step 2: Add-on Features */}
               <div>
-                <label className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider block mb-3 font-heading">
+                <label className="text-xs font-mono font-bold text-[#FF7A00] uppercase tracking-wider block mb-3 font-display">
                   2. ADD-ON MODULES & FEATURES:
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -149,19 +169,19 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
                         key={opt.id}
                         type="button"
                         onClick={() => toggleFeature(opt.id)}
-                        className={`p-3.5 rounded-xl border text-left flex items-center justify-between transition-all ${
+                        className={`p-3.5 rounded-xl border text-left flex items-center justify-between transition-all cursor-pointer ${
                           isChecked
-                            ? 'bg-cyan-950/70 border-cyan-400 text-white'
-                            : 'bg-[var(--bg-main)] border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'
+                            ? 'bg-[#FF7A00]/10 border-[#FF7A00] text-[#0E1015]'
+                            : 'bg-[#F5F6F8] border-black/[0.06] text-[#5B606D] hover:border-black/20'
                         }`}
                       >
                         <div>
-                          <div className="text-xs font-semibold font-heading">{opt.name}</div>
-                          <div className="text-[9px] text-cyan-300 font-mono">+${opt.price.toLocaleString()}</div>
+                          <div className="text-xs font-semibold text-[#0E1015]">{opt.name}</div>
+                          <div className="text-[9px] text-[#FF7A00] font-mono font-bold">+{formatPrice(opt.price)}</div>
                         </div>
 
                         <div className={`w-5 h-5 rounded-md border flex items-center justify-center ${
-                          isChecked ? 'bg-cyan-500 border-cyan-400 text-black font-bold' : 'border-[var(--border-color)]'
+                          isChecked ? 'bg-[#FF7A00] border-[#FF7A00] text-[#0E1015] font-bold' : 'border-black/20 bg-white'
                         }`}>
                           {isChecked && <Check className="w-3.5 h-3.5" />}
                         </div>
@@ -173,7 +193,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
 
               {/* Step 3: Sprint Delivery Speed */}
               <div>
-                <label className="text-xs font-mono font-bold text-indigo-400 uppercase tracking-wider block mb-3 font-heading">
+                <label className="text-xs font-mono font-bold text-[#FF7A00] uppercase tracking-wider block mb-3 font-display">
                   3. TIMELINE PRIORITY:
                 </label>
                 <div className="grid grid-cols-2 gap-3">
@@ -187,15 +207,15 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
                           soundFx.playClick();
                           setSelectedSpeed(opt.id);
                         }}
-                        className={`p-3.5 rounded-xl border text-left transition-all ${
+                        className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                           isSel
-                            ? 'bg-indigo-950/70 border-indigo-400 text-white'
-                            : 'bg-[var(--bg-main)] border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-surface)]'
+                            ? 'bg-[#FF7A00]/10 border-[#FF7A00] text-[#0E1015]'
+                            : 'bg-[#F5F6F8] border-black/[0.06] text-[#5B606D] hover:border-black/20'
                         }`}
                       >
-                        <div className="text-xs font-semibold font-heading">{opt.name}</div>
-                        <div className="text-[10px] text-indigo-300 font-mono">
-                          {opt.price > 0 ? `+$${opt.price.toLocaleString()}` : 'Standard Delivery'}
+                        <div className="text-xs font-semibold text-[#0E1015]">{opt.name}</div>
+                        <div className="text-[10px] text-[#FF7A00] font-mono font-bold">
+                          {opt.price > 0 ? `+${formatPrice(opt.price)}` : 'Standard Timeline'}
                         </div>
                       </button>
                     );
@@ -206,41 +226,41 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
             </div>
 
             {/* Right Summary Box & Brief Form */}
-            <div className="lg:col-span-5 bg-[var(--bg-main)] p-6 sm:p-8 rounded-3xl border border-[var(--border-color)] flex flex-col justify-between shadow-2xl">
+            <div className="lg:col-span-5 bg-[#F5F6F8] p-6 sm:p-8 rounded-3xl border border-black/[0.08] flex flex-col justify-between shadow-lg">
               <div>
-                <div className="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest mb-6 font-heading">
+                <div className="text-xs font-mono font-bold text-[#FF7A00] uppercase tracking-widest mb-6 font-display">
                   ESTIMATED INVESTMENT SUMMARY
                 </div>
 
-                <div className="space-y-4 mb-8 font-body">
-                  <div className="flex justify-between items-baseline border-b border-[var(--border-color)] pb-3">
-                    <span className="text-xs text-[var(--text-muted)]">Base Website Package:</span>
-                    <span className="text-sm font-mono font-bold text-[var(--text-main)]">${basePrice.toLocaleString()}</span>
+                <div className="space-y-4 mb-6">
+                  <div className="flex justify-between items-baseline border-b border-black/[0.06] pb-3">
+                    <span className="text-xs text-[#5B606D]">Base Website:</span>
+                    <span className="text-sm font-mono font-bold text-[#0E1015]">{formatPrice(basePrice)}</span>
                   </div>
 
-                  <div className="flex justify-between items-baseline border-b border-[var(--border-color)] pb-3">
-                    <span className="text-xs text-[var(--text-muted)]">Add-On Modules ({featureOpts.length}):</span>
-                    <span className="text-sm font-mono font-bold text-cyan-400">+${featuresPrice.toLocaleString()}</span>
+                  <div className="flex justify-between items-baseline border-b border-black/[0.06] pb-3">
+                    <span className="text-xs text-[#5B606D]">Add-Ons ({featureOpts.length}):</span>
+                    <span className="text-sm font-mono font-bold text-[#FF7A00]">+{formatPrice(featuresPrice)}</span>
                   </div>
 
-                  <div className="flex justify-between items-baseline border-b border-[var(--border-color)] pb-3">
-                    <span className="text-xs text-[var(--text-muted)]">Timeline Priority:</span>
-                    <span className="text-sm font-mono font-bold text-indigo-400">+${speedPrice.toLocaleString()}</span>
+                  <div className="flex justify-between items-baseline border-b border-black/[0.06] pb-3">
+                    <span className="text-xs text-[#5B606D]">Timeline Priority:</span>
+                    <span className="text-sm font-mono font-bold text-[#FF7A00]">+{formatPrice(speedPrice)}</span>
                   </div>
 
                   <div className="pt-2">
-                    <div className="text-xs text-blue-400 font-mono">ESTIMATED TOTAL:</div>
-                    <div className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400 font-mono mt-1">
-                      ${totalPrice.toLocaleString()}
+                    <div className="text-xs text-[#5B606D] font-mono uppercase">ESTIMATED TOTAL:</div>
+                    <div className="text-3xl font-extrabold text-[#FF7A00] font-display mt-1">
+                      {formatPrice(totalPrice)}
                     </div>
-                    <div className="text-xs text-[var(--text-muted)] font-mono mt-1">
-                      Estimated Duration: <span className="text-[var(--text-main)] font-bold">{totalWeeks} Weeks</span>
+                    <div className="text-xs text-[#5B606D] font-mono mt-1">
+                      Estimated Duration: <span className="text-[#0E1015] font-bold">{totalWeeks} Weeks</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Direct Brief Form */}
-                <form onSubmit={handleSubmitBrief} className="space-y-3 pt-4 border-t border-[var(--border-color)] font-body">
+                <form onSubmit={handleSubmitBrief} className="space-y-3 pt-4 border-t border-black/[0.06]">
                   <div>
                     <input
                       type="text"
@@ -248,7 +268,7 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
                       value={clientName}
                       onChange={(e) => setClientName(e.target.value)}
                       placeholder="Your Name / Company"
-                      className="w-full bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-xs text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none focus:border-blue-400"
+                      className="w-full bg-white border border-black/[0.08] rounded-xl px-4 py-2.5 text-xs text-[#0E1015] placeholder-[#5B606D]/50 focus:outline-none focus:border-[#FF7A00]"
                     />
                   </div>
                   <div>
@@ -258,16 +278,16 @@ export const ProjectEstimator: React.FC<ProjectEstimatorProps> = ({ isOpen, onCl
                       value={clientEmail}
                       onChange={(e) => setClientEmail(e.target.value)}
                       placeholder="Email Address"
-                      className="w-full bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-xs text-[var(--text-main)] placeholder-[var(--text-muted)] focus:outline-none focus:border-blue-400"
+                      className="w-full bg-white border border-black/[0.08] rounded-xl px-4 py-2.5 text-xs text-[#0E1015] placeholder-[#5B606D]/50 focus:outline-none focus:border-[#FF7A00]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 text-xs font-bold text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 rounded-xl shadow-xl transition-all flex items-center justify-center gap-2 font-heading"
+                    className="w-full py-3.5 text-xs font-bold uppercase tracking-widest text-[#0E1015] bg-[#FF7A00] hover:bg-[#FF8F26] rounded-xl shadow-md transition-all flex items-center justify-center gap-2 font-display cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
-                    <span>Send Estimate Brief</span>
+                    <span>Send Project Scope</span>
                   </button>
                 </form>
 

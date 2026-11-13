@@ -1,308 +1,295 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PageView } from '../types';
-import { ArrowUpRight, ArrowRight, ChevronLeft, ChevronRight, Plus, Star } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, AudioWaveform } from 'lucide-react';
 import { soundFx } from '../utils/audio';
+import { ShowreelModal } from './ShowreelModal';
+
+const HERO_PORTRAIT_URL = 'https://res.cloudinary.com/gz77x9kx/image/upload/v1791813337/Professional_Portrait_with_Warm_Office_Bokeh-1_1_frwup5.png';
 
 interface HeroProps {
   onNavigate: (page: PageView) => void;
   onOpenEstimator?: () => void;
-  onOpenCalendly?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onNavigate, onOpenCalendly }) => {
-  // Live Date & Time State
-  const [timeString, setTimeString] = useState('6:30pm • 23 June, 2024');
+export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+  const [loaded, setLoaded] = useState(false);
+  const [isShowreelOpen, setIsShowreelOpen] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const hours = now.getHours();
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const ampm = hours >= 12 ? 'pm' : 'am';
-      const formattedHours = hours % 12 || 12;
-      const day = now.getDate();
-      const month = now.toLocaleString('en-US', { month: 'long' });
-      const year = now.getFullYear();
-      setTimeString(`${formattedHours}:${minutes}${ampm} • ${day} ${month}, ${year}`);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 10000);
-    return () => clearInterval(interval);
+    const timer = setTimeout(() => setLoaded(true), 120);
+    return () => clearTimeout(timer);
   }, []);
 
-  const navLinks: { label: string; page: PageView; active?: boolean }[] = [
-    { label: 'Home', page: 'home', active: true },
-    { label: 'Product', page: 'services' },
-    { label: 'About', page: 'about' },
-    { label: 'Brands', page: 'portfolio' },
-    { label: 'Careers', page: 'about' },
-    { label: 'Partners', page: 'contact' },
-  ];
+  const scrollToWork = () => {
+    soundFx.playClick();
+    const el = document.getElementById('selected-work') || document.getElementById('projects');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      onNavigate('projects');
+    }
+  };
+
+  const handleOpenContact = () => {
+    soundFx.playClick();
+    onNavigate('contact');
+  };
+
+  const handleToggleAudio = () => {
+    soundFx.playClick();
+    if (!isPlayingAudio) {
+      soundFx.playChime();
+      setIsPlayingAudio(true);
+    } else {
+      setIsPlayingAudio(false);
+    }
+  };
 
   return (
-    <section id="hero" className="relative w-full min-h-screen bg-[#DEDEE0] text-[#0F172A] pt-6 pb-12 flex flex-col justify-between overflow-hidden select-none font-sans">
-      
-      {/* Studio Lighting Radial Backdrops */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-b from-white/30 via-transparent to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-black/5 via-transparent to-transparent pointer-events-none" />
+    <section
+      id="hero"
+      className="relative w-full min-h-[100svh] bg-gradient-to-b from-[#EDEDEE] via-[#E7E9ED] to-[#DFE1E7] text-[#0E1015] pt-24 sm:pt-28 pb-8 sm:pb-10 flex flex-col justify-between overflow-hidden select-none"
+    >
+      {/* Soft Studio Cyclorama Radial Glows */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[750px] bg-[radial-gradient(circle,rgba(255,255,255,0.95)_0%,rgba(235,237,242,0.6)_45%,transparent_75%)] rounded-full blur-[80px]" />
+        <div className="absolute top-10 left-10 w-[500px] h-[500px] bg-white/40 rounded-full blur-[100px]" />
+        <div className="absolute bottom-10 right-10 w-[600px] h-[500px] bg-[#E1E4EA]/70 rounded-full blur-[120px]" />
+      </div>
 
-      {/* TOP HEADER / NAVBAR (Zenrixa Style) */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-12 lg:px-[80px] relative z-30 mb-8">
-        <div className="flex items-center justify-between py-2">
-          
-          {/* Logo */}
-          <div 
-            onClick={() => {
-              soundFx.playClick();
-              onNavigate('home');
-            }}
-            className="flex items-center gap-2.5 cursor-pointer group"
-          >
-            <div className="w-6 h-6 bg-[#0F172A] rounded-md flex items-center justify-center text-white font-extrabold text-xs tracking-widest font-heading">
-              Z
-            </div>
-            <span className="font-heading font-extrabold text-2xl tracking-tight text-[#0F172A] group-hover:text-blue-600 transition-colors">
-              Zenrixa
-            </span>
-          </div>
-
-          {/* Nav Links (Desktop) */}
-          <nav className="hidden md:flex items-center gap-8 lg:gap-10">
-            {navLinks.map((link, idx) => (
-              <button
-                key={idx}
-                onClick={() => {
-                  soundFx.playClick();
-                  onNavigate(link.page);
-                }}
-                onMouseEnter={() => soundFx.playHover()}
-                className="relative text-sm font-medium text-[#0F172A]/80 hover:text-[#0F172A] transition-colors py-1 cursor-pointer"
-              >
-                <span>{link.label}</span>
-                {link.active && (
-                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#0F172A]" />
-                )}
-              </button>
-            ))}
-          </nav>
-
-          {/* Time Badge & Menu Pill */}
-          <div className="flex items-center gap-4">
-            <div className="hidden lg:flex items-center gap-2 px-4 py-2 rounded-full bg-white/70 backdrop-blur-md border border-black/5 text-xs font-medium text-[#475569] shadow-sm">
-              <span>Timezone</span>
-              <span className="text-[#0F172A] font-semibold">{timeString}</span>
-            </div>
-
-            <button
-              onClick={() => {
-                soundFx.playClick();
-                onNavigate('contact');
-              }}
-              onMouseEnter={() => soundFx.playHover()}
-              className="px-5 py-2 rounded-full bg-white/90 hover:bg-white border border-black/10 text-xs font-semibold text-[#0F172A] flex items-center gap-2 transition-all shadow-sm active:scale-95 cursor-pointer"
-            >
-              <span className="font-mono text-sm leading-none">=</span>
-              <span>MENU</span>
-            </button>
-          </div>
-
+      {/* Giant Typographic Watermark Layer */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 overflow-hidden">
+        {/* Giant Watermark Typography behind shoulders: EMMANUEL */}
+        <div className="absolute top-[34%] sm:top-[30%] lg:top-[28%] inset-x-0 flex justify-center items-center pointer-events-none select-none z-10 opacity-70">
+          <span className="font-display font-black text-[15vw] sm:text-[16vw] lg:text-[17vw] tracking-[-0.05em] uppercase leading-none text-transparent bg-clip-text bg-gradient-to-b from-white via-[#C7CBD4]/50 to-transparent drop-shadow-sm">
+            EMMANUEL
+          </span>
         </div>
       </div>
 
-      {/* GIANT BACKGROUND WATERMARK TYPOGRAPHY: "ZENRIXA" */}
-      <div className="absolute top-[48%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center pointer-events-none z-0 overflow-hidden select-none">
-        <span className="font-heading font-black text-[140px] sm:text-[240px] lg:text-[320px] xl:text-[380px] leading-none tracking-tighter text-[#0F172A]/[0.06] block uppercase">
-          ZENRIXA
-        </span>
-      </div>
-
-      {/* MAIN HERO CONTENT GRID */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-12 lg:px-[80px] relative z-10 my-auto">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative min-h-[580px] lg:min-h-[640px]">
+      {/* Main Grid Content Container (Left & Right UI Columns) */}
+      <div className="max-w-7xl w-full mx-auto px-6 sm:px-10 relative z-30 my-auto pointer-events-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start min-h-[480px]">
           
-          {/* LEFT COLUMN (Content) */}
-          <div className="lg:col-span-4 flex flex-col items-start text-left z-20">
+          {/* ================= LEFT COLUMN ================= */}
+          <div className="lg:col-span-6 flex flex-col items-start text-left z-30 pt-2 lg:pt-0 max-w-xl">
             
-            {/* Eyebrow Label */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-[#64748B] mb-6 tracking-wide">
-              <span className="w-[2px] h-4 bg-[#0F172A]" />
-              <span>Creative Agency</span>
+            {/* Large Confident Headline matching the exact 4-line reference layout */}
+            <div className="mb-2">
+              <h1
+                className={`font-display font-black text-4xl sm:text-5xl lg:text-[62px] xl:text-[72px] tracking-[-0.04em] leading-[1.02] text-[#0E1015] transition-all duration-1000 delay-300 ${
+                  loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
+              >
+                We start from <br />
+                zero, delivering <br />
+                only what <br />
+                matters.
+              </h1>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-[58px] xl:text-[64px] leading-[95%] tracking-[-2px] text-[#0F172A] mb-6">
-              We start from <br />
-              zero, delivering <br />
-              only what matters.
-            </h1>
-
-            {/* Rating Stars */}
-            <div className="flex items-center gap-3 mb-10">
-              <div className="flex text-amber-500 gap-1 text-sm">
-                <Star className="w-4 h-4 fill-amber-500 stroke-none" />
-                <Star className="w-4 h-4 fill-amber-500 stroke-none" />
-                <Star className="w-4 h-4 fill-amber-500 stroke-none" />
-                <Star className="w-4 h-4 fill-amber-500 stroke-none" />
-                <Star className="w-4 h-4 fill-amber-500 stroke-none" />
+            {/* Social Proof: 5 Amber Stars + 3000+ Customers • 100% Satisfaction */}
+            <div
+              className={`flex items-center gap-2 mt-4 mb-8 sm:mb-10 transition-all duration-1000 delay-500 ${
+                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
+            >
+              <div className="flex items-center text-[#FF7A00] text-sm tracking-tight">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
               </div>
-              <span className="text-xs font-bold text-[#475569] tracking-tight">
+              <span className="text-xs sm:text-sm font-bold font-display text-[#0E1015] tracking-tight">
                 3000+ Customers
+              </span>
+              <span className="text-xs sm:text-sm font-display text-[#8C919D]">
+                • 100% Satisfaction
               </span>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-3">
-              
-              {/* Primary Pill Button + Arrow Circle */}
-              <div className="inline-flex items-center p-1 rounded-full bg-[#0F172A] shadow-xl hover:bg-[#1E293B] transition-colors cursor-pointer group">
+            {/* Dual CTA Buttons (Solid Black Pill with Embedded White Arrow Circle + Frosted Grey Pill) */}
+            <div
+              className={`flex flex-wrap items-center gap-3.5 transition-all duration-1000 delay-700 ${
+                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
+              {/* Primary Pill Button: Chat With Us -> */}
+              <button
+                id="hero-chat-with-us-btn"
+                onClick={handleOpenContact}
+                onMouseEnter={() => soundFx.playHover()}
+                className="px-6 py-3.5 rounded-full bg-[#0E1015] hover:bg-[#21242C] text-white font-display font-semibold text-xs sm:text-sm flex items-center gap-3.5 transition-all duration-300 shadow-[0_10px_25px_rgba(14,16,21,0.2)] active:scale-95 cursor-pointer group"
+              >
+                <span>Chat With Us</span>
+                <div className="w-6 h-6 rounded-full bg-white text-[#0E1015] flex items-center justify-center transition-transform duration-300 group-hover:translate-x-0.5">
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </div>
+              </button>
+
+              {/* Secondary Pill Button: Our Works */}
+              <button
+                id="hero-our-works-btn"
+                onClick={scrollToWork}
+                onMouseEnter={() => soundFx.playHover()}
+                className="px-7 py-3.5 rounded-full bg-[#E2E4EB] hover:bg-[#D5D8E0] text-[#0E1015] font-display font-semibold text-xs sm:text-sm transition-all duration-300 border border-black/[0.03] active:scale-95 cursor-pointer"
+              >
+                <span>Our Works</span>
+              </button>
+            </div>
+
+          </div>
+
+          {/* ================= RIGHT COLUMN ================= */}
+          <div className="lg:col-span-6 flex flex-col items-end justify-between self-stretch z-30 pt-4 lg:pt-0">
+            
+            {/* Top Right: Sleek White Capsule with [AUDIO] pill and < > controls */}
+            <div
+              className={`bg-white/90 backdrop-blur-md rounded-full p-2 pr-3 flex items-center gap-6 sm:gap-8 shadow-[0_12px_35px_rgba(0,0,0,0.06)] border border-white/80 transition-all duration-1000 delay-500 ${
+                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+              }`}
+            >
+              {/* Left Black Pill: Audio indicator */}
+              <button
+                onClick={handleToggleAudio}
+                onMouseEnter={() => soundFx.playHover()}
+                className="px-4 py-2 sm:py-2.5 rounded-full bg-[#0E1015] hover:bg-[#20232A] text-white flex items-center gap-2 transition-all cursor-pointer group"
+                title={isPlayingAudio ? 'Pause studio audio' : 'Play studio audio'}
+              >
+                <AudioWaveform className={`w-4 h-4 text-white ${isPlayingAudio ? 'animate-pulse text-[#FF7A00]' : ''}`} />
+                <span className="text-xs font-display font-black tracking-wider text-white">
+                  AUDIO
+                </span>
+              </button>
+
+              {/* Right Controls: < and > */}
+              <div className="flex items-center gap-1.5">
                 <button
                   onClick={() => {
                     soundFx.playClick();
-                    if (onOpenCalendly) onOpenCalendly();
-                    else onNavigate('contact');
                   }}
-                  className="px-6 py-3.5 text-xs font-bold text-white font-heading cursor-pointer"
+                  onMouseEnter={() => soundFx.playHover()}
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/[0.05] hover:bg-black/[0.1] text-[#0E1015] flex items-center justify-center transition-all cursor-pointer"
+                  aria-label="Previous"
                 >
-                  Chat With Us
+                  <ChevronLeft className="w-3.5 h-3.5" />
                 </button>
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#0F172A] group-hover:scale-105 transition-transform">
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-                </div>
+                <button
+                  onClick={() => {
+                    soundFx.playClick();
+                  }}
+                  onMouseEnter={() => soundFx.playHover()}
+                  className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-black/[0.05] hover:bg-black/[0.1] text-[#0E1015] flex items-center justify-center transition-all cursor-pointer"
+                  aria-label="Next"
+                >
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
               </div>
-
-              {/* Secondary Pill Button */}
-              <button
-                onClick={() => {
-                  soundFx.playClick();
-                  onNavigate('portfolio');
-                }}
-                className="px-7 py-4 rounded-full bg-black/10 hover:bg-black/15 text-[#0F172A] font-heading font-bold text-xs transition-colors cursor-pointer"
-              >
-                Our Works
-              </button>
-
             </div>
 
-          </div>
-
-          {/* CENTER COLUMN (Hero Portrait) */}
-          <div className="lg:col-span-4 flex items-end justify-center relative z-10 h-[520px] sm:h-[600px] lg:h-[680px] pointer-events-none">
-            
-            {/* High Quality Central Studio Portrait */}
-            <img
-              src="https://res.cloudinary.com/gz77x9kx/image/upload/v1786029226/emmanuel_dkwush.png"
-              alt="Zenrixa Creative Portrait"
-              referrerPolicy="no-referrer"
-              className="h-full object-contain object-bottom filter contrast-[1.05] brightness-[1.01] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)] pointer-events-auto"
-            />
-
-          </div>
-
-          {/* RIGHT COLUMN (Widget & Partners) */}
-          <div className="lg:col-span-4 flex flex-col justify-between items-end h-full z-20 space-y-8 lg:space-y-0">
-            
-            {/* Top Right Glass Widget Card: "Design to explore." */}
-            <div className="w-full max-w-[340px] bg-white/70 backdrop-blur-2xl border border-white/80 rounded-[32px] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.06)] flex items-center gap-4 relative group">
-              
-              {/* Dark Left Square with Emblem */}
-              <div className="w-20 h-20 rounded-2xl bg-[#0F172A] flex items-center justify-center text-white shrink-0 shadow-lg">
-                <div className="font-heading font-extrabold text-2xl tracking-tighter">
-                  N<sup>®</sup>
-                </div>
-              </div>
-
-              {/* Right Side Content */}
-              <div className="flex-1 flex flex-col justify-between h-20 py-0.5">
-                <div className="flex items-center justify-between">
-                  <span className="font-heading font-bold text-base text-[#0F172A]">
-                    Design to explore.
-                  </span>
-                  <button className="w-6 h-6 rounded-full bg-black/5 flex items-center justify-center text-[#0F172A] hover:bg-black/10 transition-colors">
-                    <Plus className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {/* Progress bar line & Control Arrows */}
-                <div className="flex items-center justify-between pt-3">
-                  <div className="w-16 h-1 rounded-full bg-black/10 overflow-hidden">
-                    <div className="w-2/3 h-full bg-[#0F172A] rounded-full" />
-                  </div>
-
-                  <div className="flex items-center gap-1.5">
-                    <button className="w-7 h-7 rounded-full bg-black/5 hover:bg-black/10 flex items-center justify-center text-[#0F172A] transition-colors">
-                      <ChevronLeft className="w-4 h-4" />
-                    </button>
-                    <button className="w-7 h-7 rounded-full bg-[#0F172A] text-white flex items-center justify-center hover:bg-[#1E293B] transition-colors">
-                      <ChevronRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Bottom Right Partners List */}
-            <div className="w-full max-w-[340px] flex flex-col items-end text-right">
-              <div className="text-xs font-bold text-[#0F172A] mb-3">
+            {/* Lower Right: "Our Partners" with Diamond Bullets matching screenshot */}
+            <div
+              className={`mt-12 lg:mt-auto flex flex-col items-end transition-all duration-1000 delay-700 ${
+                loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+              }`}
+            >
+              <div className="text-xs sm:text-sm font-bold font-display text-[#0E1015] tracking-tight mb-3">
                 Our Partners
               </div>
 
-              <div className="grid grid-cols-2 gap-x-6 gap-y-3 text-xs font-heading font-bold text-[#64748B] opacity-80">
-                <div className="flex items-center gap-1.5 justify-end hover:text-[#0F172A] transition-colors cursor-pointer">
-                  <span className="font-mono text-sm">z</span>
-                  <span>zantic</span>
+              {/* Logo Cluster with clean diamond bullets */}
+              <div className="flex flex-col gap-2 items-end">
+                {/* Row 1 */}
+                <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-[13px] font-display font-medium text-[#5B606D]">
+                  <span className="flex items-center gap-1.5 hover:text-[#0E1015] transition-colors cursor-default">
+                    <span className="text-[10px]">◆</span> zantic
+                  </span>
+                  <span className="flex items-center gap-1.5 font-bold text-[#0E1015] hover:text-[#FF7A00] transition-colors cursor-default">
+                    <span className="text-[10px] font-normal text-[#5B606D]">◆</span> BookStore
+                  </span>
+                  <span className="flex items-center gap-1.5 hover:text-[#0E1015] transition-colors cursor-default">
+                    <span className="text-[10px]">◆</span> Wager
+                  </span>
                 </div>
-                <div className="flex items-center gap-1.5 justify-end hover:text-[#0F172A] transition-colors cursor-pointer">
-                  <span>BookStore</span>
-                </div>
-                <div className="flex items-center gap-1.5 justify-end hover:text-[#0F172A] transition-colors cursor-pointer">
-                  <span>Wager</span>
-                </div>
-                <div className="flex items-center gap-1.5 justify-end hover:text-[#0F172A] transition-colors cursor-pointer">
-                  <span>Crono</span>
-                </div>
-                <div className="flex items-center gap-1.5 justify-end hover:text-[#0F172A] transition-colors cursor-pointer">
-                  <span>Mercury</span>
+
+                {/* Row 2 */}
+                <div className="flex items-center gap-4 sm:gap-5 text-xs sm:text-[13px] font-display font-medium text-[#747884]">
+                  <span className="flex items-center gap-1.5 hover:text-[#0E1015] transition-colors cursor-default">
+                    <span className="text-[10px]">◆</span> Crone
+                  </span>
+                  <span className="flex items-center gap-1.5 hover:text-[#0E1015] transition-colors cursor-default">
+                    <span className="text-[10px]">◆</span> Mercury
+                  </span>
+                  <span className="flex items-center gap-1.5 hover:text-[#0E1015] transition-colors cursor-default">
+                    <span className="text-[10px]">◆</span> WordPress
+                  </span>
                 </div>
               </div>
+
             </div>
 
           </div>
 
         </div>
-
       </div>
 
-      {/* BOTTOM FLOATING GLASS BAR ACROSS PORTRAIT */}
-      <div className="max-w-[1440px] w-full mx-auto px-6 sm:px-12 lg:px-[80px] relative z-30 mt-6">
-        <div className="w-full max-w-[900px] mx-auto h-[60px] rounded-full bg-white/70 backdrop-blur-2xl border border-white/80 shadow-[0_15px_40px_rgba(0,0,0,0.08)] px-6 flex items-center justify-between text-xs font-semibold text-[#0F172A]">
+      {/* ================= BOTTOM FLOATING CAPSULE / DOCK BAR WITH GROUNDED FIGURE ================= */}
+      <div
+        className={`max-w-5xl w-full mx-auto px-6 sm:px-10 relative z-20 transition-all duration-1000 delay-800 ${
+          loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+        }`}
+      >
+        {/* Grounded Man Cutout with Full Head Visibility, Sized Down to Natural Scale */}
+        <div
+          className={`absolute bottom-[calc(100%-8px)] left-1/2 -translate-x-1/2 pointer-events-none z-10 flex flex-col items-center justify-start overflow-hidden h-[290px] sm:h-[330px] md:h-[370px] lg:h-[410px] xl:h-[445px] transition-all duration-1000 ease-out delay-200 ${
+            loaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95 translate-y-6'
+          }`}
+        >
+          <img
+            src={HERO_PORTRAIT_URL}
+            alt="Emmanuel"
+            referrerPolicy="no-referrer"
+            className="w-auto h-[350px] sm:h-[395px] md:h-[440px] lg:h-[490px] xl:h-[530px] max-w-none object-contain object-top drop-shadow-[0_18px_40px_rgba(0,0,0,0.14)]"
+          />
+        </div>
+
+        <div className="relative z-20 bg-[#121318]/95 backdrop-blur-2xl border border-white/10 rounded-full py-3 sm:py-3.5 px-6 sm:px-8 text-white shadow-[0_20px_45px_rgba(0,0,0,0.25)] flex items-center justify-between gap-4">
           
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#0F172A]" />
-            <span>10+ Years Exp</span>
+          {/* Left Pill Badge: 10+ Years Exp */}
+          <div className="flex items-center gap-2.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-[#FF7A00]" />
+            <span className="text-xs sm:text-[13px] font-display font-semibold tracking-tight text-white whitespace-nowrap">
+              10+ Years Exp
+            </span>
           </div>
 
-          <div className="hidden sm:flex items-center gap-2 text-[#64748B]">
+          {/* Center Info: • Based in Warsaw • Global Projects */}
+          <div className="text-[11px] sm:text-xs font-display font-medium text-[#9BA1AF] flex items-center gap-2 truncate">
             <span>• Based in Warsaw</span>
+            <span className="hidden sm:inline">• Global Projects</span>
           </div>
 
+          {/* Right Button: Scroll Down ↓ */}
           <button
-            onClick={() => {
-              soundFx.playClick();
-              const el = document.querySelector('#manifesto');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#0F172A] text-white hover:bg-[#1E293B] transition-colors cursor-pointer"
+            onClick={scrollToWork}
+            onMouseEnter={() => soundFx.playHover()}
+            className="flex items-center gap-1.5 text-xs sm:text-[13px] font-display font-semibold text-[#FF7A00] hover:text-white transition-colors cursor-pointer whitespace-nowrap group"
           >
             <span>Scroll Down</span>
-            <span>↓</span>
+            <span className="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
           </button>
 
         </div>
       </div>
 
+      {/* Interactive Showreel Video Modal */}
+      <ShowreelModal
+        isOpen={isShowreelOpen}
+        onClose={() => setIsShowreelOpen(false)}
+        onNavigateContact={handleOpenContact}
+      />
     </section>
   );
 };

@@ -13,18 +13,18 @@ export const TechPedestal: React.FC = () => {
   ];
 
   return (
-    <section id="tech" className="py-24 bg-[var(--bg-main)] text-[var(--text-main)] relative z-10 overflow-hidden transition-colors duration-300">
+    <section id="tech" className="py-24 bg-[#EDEDEE] text-[#0E1015] relative z-10 overflow-hidden transition-colors duration-300">
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold tracking-widest uppercase mb-4 font-heading">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FF7A00]/10 border border-[#FF7A00]/30 text-[#FF7A00] text-xs font-mono font-bold tracking-widest uppercase mb-4">
             • TECH STACK & SKILLS •
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-[var(--text-main)] tracking-tight font-heading">
+          <h2 className="text-3xl sm:text-5xl font-black text-[#0E1015] tracking-tight font-display">
             Built On Modern, <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
+            <span className="text-[#FF7A00]">
               Battle-Tested Technologies.
             </span>
           </h2>
@@ -35,17 +35,17 @@ export const TechPedestal: React.FC = () => {
           {techs.map((tech, idx) => (
             <div
               key={idx}
-              className="bg-[var(--bg-surface)] p-6 rounded-3xl border border-[var(--border-color)] hover:border-blue-500/60 transition-all duration-300 group hover:-translate-y-1 shadow-xl"
+              className="bg-white p-6 rounded-3xl border border-black/[0.08] hover:border-[#FF7A00] transition-all duration-300 group hover:-translate-y-1 shadow-[0_15px_35px_rgba(0,0,0,0.03)]"
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="text-3xl group-hover:scale-110 transition-transform">{tech.icon}</span>
-                <span className="text-[10px] font-mono text-cyan-400 bg-cyan-950/80 px-2.5 py-1 rounded-full border border-cyan-500/30">
+                <span className="text-[10px] font-mono text-[#0E1015] bg-[#F5F6F8] px-2.5 py-1 rounded-full border border-black/[0.06]">
                   {tech.category}
                 </span>
               </div>
 
-              <h3 className="text-lg font-bold text-[var(--text-main)] mb-2 font-heading">{tech.name}</h3>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed font-body">{tech.desc}</p>
+              <h3 className="text-lg font-bold text-[#0E1015] mb-2 font-display">{tech.name}</h3>
+              <p className="text-xs text-[#5B606D] leading-relaxed">{tech.desc}</p>
             </div>
           ))}
         </div>

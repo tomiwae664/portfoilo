@@ -32,7 +32,7 @@ export const CareersPage: React.FC = () => {
       responsibilities: [
         'Design high-fidelity Figma web prototypes with auto-layout components.',
         'Create bespoke typographic scales, color tokens, and icon sets.',
-        'Collaborate with Alexander Vance on client handoffs and interactive demos.'
+        'Collaborate with Emmanuel on client handoffs and interactive demos.'
       ],
       requirements: [
         '3+ years of professional web design experience in Figma.',
@@ -73,50 +73,53 @@ export const CareersPage: React.FC = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 bg-[var(--bg-main)] text-[var(--text-main)] relative z-10 min-h-screen transition-colors duration-300">
+    <div className="pt-32 pb-24 bg-[#EDEDEE] text-[#0E1015] relative z-10 min-h-screen">
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
         
         {/* Header */}
-        <div className="max-w-3xl mb-16 font-heading">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-950/60 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold tracking-widest uppercase mb-4">
-            • COLLABORATION OPPORTUNITIES •
+        <div className="max-w-3xl mb-16">
+          <div className="inline-flex items-center gap-2 mb-4">
+            <span className="w-[2px] h-3.5 bg-[#FF7A00]" />
+            <span className="text-xs sm:text-sm font-semibold font-display tracking-tight text-[#FF7A00]">
+              COLLABORATION OPPORTUNITIES
+            </span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-[var(--text-main)] tracking-tight leading-tight mb-6">
+          <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-[62px] xl:text-[70px] tracking-[-0.038em] leading-[1.05] text-[#0E1015] mb-6 uppercase">
             Work With <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-400">
-              Alexander Vance.
+            <span className="text-[#FF7A00]">
+              Emmanuel.
             </span>
           </h1>
-          <p className="text-base sm:text-lg text-[var(--text-muted)] leading-relaxed font-body">
+          <p className="text-base sm:text-lg text-[#5B606D] leading-relaxed font-display">
             I regularly partner with talented freelance designers, motion artists, and WordPress developers on high-end client projects.
           </p>
         </div>
 
         {/* Job Openings Grid */}
-        <div className="space-y-6 mb-20 font-body">
+        <div className="space-y-6 mb-20">
           {roles.map((job) => (
             <div
               key={job.id}
-              className="bg-[var(--bg-surface)] p-8 rounded-3xl border border-[var(--border-color)] hover:border-blue-500/60 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-xl"
+              className="bg-white p-8 rounded-3xl border border-black/[0.08] hover:border-[#FF7A00]/50 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-[0_15px_35px_rgba(0,0,0,0.04)]"
             >
               <div>
                 <div className="flex flex-wrap items-center gap-3 mb-2 font-mono">
-                  <span className="text-xs font-bold text-cyan-300 bg-cyan-950 px-3 py-0.5 rounded-full border border-cyan-500/30">
+                  <span className="text-xs font-bold text-[#FF7A00] bg-[#FF7A00]/10 px-3 py-0.5 rounded-full border border-[#FF7A00]/20">
                     {job.department}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)] flex items-center gap-1">
-                    <MapPin className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-xs text-[#5B606D] flex items-center gap-1">
+                    <MapPin className="w-3.5 h-3.5 text-[#FF7A00]" />
                     {job.location}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)] flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5 text-indigo-400" />
+                  <span className="text-xs text-[#5B606D] flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-[#FF7A00]" />
                     {job.type}
                   </span>
                 </div>
 
-                <h3 className="text-2xl font-bold text-[var(--text-main)] mb-2 font-heading">{job.title}</h3>
-                <p className="text-xs sm:text-sm text-[var(--text-muted)] max-w-2xl leading-relaxed">{job.summary}</p>
+                <h3 className="text-2xl font-bold text-[#0E1015] mb-2 font-display">{job.title}</h3>
+                <p className="text-xs sm:text-sm text-[#5B606D] max-w-2xl leading-relaxed">{job.summary}</p>
               </div>
 
               <button
@@ -125,7 +128,7 @@ export const CareersPage: React.FC = () => {
                   setSelectedJob(job);
                 }}
                 onMouseEnter={() => soundFx.playHover()}
-                className="px-6 py-3.5 rounded-full bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-2 w-fit flex-shrink-0 font-heading"
+                className="px-6 py-3.5 rounded-full bg-[#0E1015] hover:bg-[#FF7A00] hover:text-[#0E1015] text-white font-bold text-xs flex items-center gap-2 w-fit shrink-0 font-display transition-colors cursor-pointer shadow-sm"
               >
                 <span>View Details & Apply</span>
                 <ArrowRight className="w-4 h-4" />
@@ -138,66 +141,66 @@ export const CareersPage: React.FC = () => {
 
       {/* Application Modal */}
       {selectedJob && (
-        <div className="fixed inset-0 z-[120] bg-black/90 backdrop-blur-2xl flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
-          <div className="bg-[var(--bg-surface)] border border-blue-500/40 rounded-3xl max-w-2xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-y-auto shadow-2xl text-[var(--text-main)]">
+        <div className="fixed inset-0 z-[120] bg-black/50 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto animate-in fade-in duration-200">
+          <div className="bg-white border border-black/[0.08] rounded-3xl max-w-2xl w-full p-6 sm:p-10 relative max-h-[90vh] overflow-y-auto shadow-2xl text-[#0E1015]">
             <button
               onClick={() => {
                 setSelectedJob(null);
                 setSubmitted(false);
               }}
-              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-[var(--text-main)] flex items-center justify-center transition-all"
+              className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#F5F6F8] hover:bg-[#0E1015] hover:text-white text-[#0E1015] flex items-center justify-center transition-all cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
             {submitted ? (
-              <div className="py-12 text-center space-y-4 font-body">
-                <div className="w-16 h-16 bg-emerald-500/20 rounded-full border border-emerald-400 text-emerald-400 flex items-center justify-center mx-auto text-2xl font-bold">
+              <div className="py-12 text-center space-y-4">
+                <div className="w-16 h-16 bg-[#FF7A00]/20 rounded-full border border-[#FF7A00] text-[#FF7A00] flex items-center justify-center mx-auto text-2xl font-bold">
                   ✓
                 </div>
-                <h3 className="text-2xl font-bold text-[var(--text-main)] font-heading">Application Submitted!</h3>
-                <p className="text-xs text-[var(--text-muted)]">
-                  Thank you <span className="text-blue-400 font-bold">{applicantName}</span>. Alexander Vance will review your portfolio and reach out to <span className="text-cyan-400 font-bold">{applicantEmail}</span> soon.
+                <h3 className="text-2xl font-bold text-[#0E1015] font-display">Application Submitted!</h3>
+                <p className="text-xs text-[#5B606D]">
+                  Thank you <span className="text-[#FF7A00] font-bold">{applicantName}</span>. Emmanuel will review your portfolio and reach out to <span className="text-[#0E1015] font-bold">{applicantEmail}</span> soon.
                 </p>
                 <button
                   onClick={() => {
                     setSelectedJob(null);
                     setSubmitted(false);
                   }}
-                  className="px-6 py-2.5 rounded-full bg-blue-600 text-white font-bold text-xs font-heading"
+                  className="px-6 py-2.5 rounded-full bg-[#FF7A00] text-[#0E1015] font-bold text-xs font-display cursor-pointer"
                 >
                   Close Window
                 </button>
               </div>
             ) : (
               <div>
-                <span className="text-xs font-mono font-bold text-cyan-400 uppercase">{selectedJob.department} • {selectedJob.location}</span>
-                <h2 className="text-2xl font-bold text-[var(--text-main)] mb-4 font-heading">{selectedJob.title}</h2>
+                <span className="text-xs font-mono font-bold text-[#FF7A00] uppercase">{selectedJob.department} • {selectedJob.location}</span>
+                <h2 className="text-2xl font-bold text-[#0E1015] mb-4 font-display">{selectedJob.title}</h2>
 
-                <div className="space-y-4 text-xs text-[var(--text-muted)] mb-6 font-body">
+                <div className="space-y-4 text-xs text-[#5B606D] mb-6 font-sans">
                   <div>
-                    <div className="font-bold text-[var(--text-main)] font-mono uppercase mb-2 font-heading">RESPONSIBILITIES:</div>
+                    <div className="font-bold text-[#0E1015] font-mono uppercase mb-2 font-display">RESPONSIBILITIES:</div>
                     <ul className="space-y-1.5 list-disc list-inside">
                       {selectedJob.responsibilities.map((r, i) => <li key={i}>{r}</li>)}
                     </ul>
                   </div>
 
                   <div>
-                    <div className="font-bold text-[var(--text-main)] font-mono uppercase mb-2 font-heading">REQUIREMENTS:</div>
+                    <div className="font-bold text-[#0E1015] font-mono uppercase mb-2 font-display">REQUIREMENTS:</div>
                     <ul className="space-y-1.5 list-disc list-inside">
                       {selectedJob.requirements.map((req, i) => <li key={i}>{req}</li>)}
                     </ul>
                   </div>
                 </div>
 
-                <form onSubmit={handleApply} className="space-y-3 pt-4 border-t border-[var(--border-color)] font-body">
+                <form onSubmit={handleApply} className="space-y-3 pt-4 border-t border-black/[0.08]">
                   <input
                     type="text"
                     required
                     value={applicantName}
                     onChange={(e) => setApplicantName(e.target.value)}
                     placeholder="Full Name"
-                    className="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-xs text-[var(--text-main)] focus:outline-none focus:border-blue-400"
+                    className="w-full bg-[#F5F6F8] border border-black/[0.08] rounded-xl px-4 py-2.5 text-xs text-[#0E1015] focus:outline-none focus:border-[#FF7A00]"
                   />
                   <input
                     type="email"
@@ -205,7 +208,7 @@ export const CareersPage: React.FC = () => {
                     value={applicantEmail}
                     onChange={(e) => setApplicantEmail(e.target.value)}
                     placeholder="Email Address"
-                    className="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-xs text-[var(--text-main)] focus:outline-none focus:border-blue-400"
+                    className="w-full bg-[#F5F6F8] border border-black/[0.08] rounded-xl px-4 py-2.5 text-xs text-[#0E1015] focus:outline-none focus:border-[#FF7A00]"
                   />
                   <input
                     type="url"
@@ -213,12 +216,12 @@ export const CareersPage: React.FC = () => {
                     value={portfolioUrl}
                     onChange={(e) => setPortfolioUrl(e.target.value)}
                     placeholder="Portfolio URL / GitHub / Dribbble Profile"
-                    className="w-full bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl px-4 py-2.5 text-xs text-[var(--text-main)] focus:outline-none focus:border-blue-400"
+                    className="w-full bg-[#F5F6F8] border border-black/[0.08] rounded-xl px-4 py-2.5 text-xs text-[#0E1015] focus:outline-none focus:border-[#FF7A00]"
                   />
 
                   <button
                     type="submit"
-                    className="w-full py-3.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 font-heading"
+                    className="w-full py-3.5 bg-[#FF7A00] hover:bg-[#FF8F26] text-[#0E1015] rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 font-display cursor-pointer shadow-md"
                   >
                     <Send className="w-4 h-4" />
                     <span>Submit Partner Application</span>
